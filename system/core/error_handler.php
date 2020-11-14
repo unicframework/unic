@@ -1,0 +1,166 @@
+<?php
+/**
+* Error Handler
+* Handle web application errors.
+*
+* @package : Error Handler
+* @category : System
+* @author : Unic Framework
+* @link : https://github.com/unic-framework/fnic
+*/
+
+defined('SYSPATH') OR exit('No direct access allowed');
+
+/**
+* Error Handler
+* server default error handler.
+*
+* @param integer $errno
+* @param string $errstr
+* @param string $errfile
+* @param integer $errline
+* @return boolean
+*/
+function handleError($errno, $errstr, $errfile, $errline) {
+  global $debug;
+  $user_error_handler = parse_errorhandler();
+  //Load users error handler
+  if(load_error_handler($user_error_handler, $errstr)) {
+    return true;
+  } else {
+    //Check application error debugging
+    if($debug === true) {
+      //Call php default error handler
+      return false;
+    } else {
+      if(in_array($errno, array(E_ERROR, E_WARNING, E_PARSE))) {
+        load_error_handler($user_error_handler, 500);
+      }
+      return true;
+    }
+  }
+}
+
+
+/**
+* Parse ErrorHandler
+* This function configure and parse users custom errorhandler array.
+*
+* @return array
+*/
+function parse_errorhandler() {
+  global $errorhandlers;
+  if(!is_array($errorhandlers)) {
+    $errorhandlers = array();
+  }
+  //users error handler array
+  $user_error_handler = array();
+  //parse errorhandler array
+  foreach($errorhandlers as $error => $handler) {
+    //ignore trailing slashes
+    $error = trim($error, '/');
+    //check handler is array or not
+    if(!is_array($handler)) {
+      //get views class name and method name
+      list($class, $method) = explode('.', $handler);
+      $user_error_handler[$error]['error'] = $error;
+      $user_error_handler[$error]['class'] = $class;
+      $user_error_handler[$error]['method'] = $method;
+    } else {
+      exit('Error : invalid errorhandler');
+    }
+  }
+  return $user_error_handler;
+}
+
+/**
+* Load Error Handler
+* Handle server error like 404, 500 and load user's custom errorhandler.
+*
+* @param array $errorhandler
+* @param integer $response_code
+* @return mixed
+*/
+function load_error_handler($errorhandler, $response_code) {
+  //Check user custom errorhandler
+  if(array_key_exists($response_code, $errorhandler)) {
+    $class = $errorhandler[$response_code]['class'];
+    $method = $errorhandler[$response_code]['method'];
+    http_response_code($response_code);
+    //Check view class exists or not
+    if(class_exists($class)) {
+      //Create view object
+      $obj = new $class;
+      //Check in views class method exists or not
+      if(method_exists($obj, $method)) {
+        //Call the error handler method
+        $obj->$method();
+      } else {
+        exit("Error : '$method' : error handler function does not exists");
+      }
+    } else {
+      exit("Error : '".$class."' : error handler class does not exists");
+    }
+  } else {
+    //Default status codes
+    $status_codes=array(
+        100 => 'Continue',
+        101 => 'Switching Protocols',
+
+        200 => 'OK',
+        201 => 'Created',
+        202 => 'Accepted',
+        203 => 'Non-Authoritative Information',
+        204 => 'No Content',
+        205 => 'Reset Content',
+        206 => 'Partial Content',
+
+        300 => 'Multiple Choices',
+        301 => 'Moved Permanently',
+        302 => 'Found',
+        303 => 'See Other',
+        304 => 'Not Modified',
+        305 => 'Use Proxy',
+        307 => 'Temporary Redirect',
+
+        400 => 'Bad Request',
+        401 => 'Unauthorized',
+        402 => 'Payment Required',
+        403 => 'Forbidden',
+        404 => 'Not Found',
+        405 => 'Method Not Allowed',
+        406 => 'Not Acceptable',
+        407 => 'Proxy Authentication Required',
+        408 => 'Request Timeout',
+        409 => 'Conflict',
+        410 => 'Gone',
+        411 => 'Length Required',
+        412 => 'Precondition Failed',
+        413 => 'Request Entity Too Large',
+        414 => 'Request-URI Too Long',
+        415 => 'Unsupported Media Type',
+        416 => 'Requested Range Not Satisfiable',
+        417 => 'Expectation Failed',
+        422 => 'Unprocessable Entity',
+        426 => 'Upgrade Required',
+        428 => 'Precondition Required',
+        429 => 'Too Many Requests',
+        431 => 'Request Header Fields Too Large',
+
+        500 => 'Internal Server Error',
+        501 => 'Not Implemented',
+        502 => 'Bad Gateway',
+        503 => 'Service Unavailable',
+        504 => 'Gateway Timeout',
+        505 => 'HTTP Version Not Supported',
+        511 => 'Network Authentication Required',
+    );
+    //System ErrorHandler
+    if(in_array($response_code, array(403, 404, 500)) && array_key_exists($response_code, $status_codes)) {
+      http_response_code($response_code);
+      exit($response_code.' '.$status_codes[$response_code]);
+    } else {
+      return false;
+    }
+  }
+}
