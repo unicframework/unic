@@ -35,7 +35,7 @@ php -S localhost:8080 index.php
   - Install `composer` if you have not installed.
 
 ```shell
-$ composer create-project unic-framework/unic blog
+composer create-project unic-framework/unic blog
 ```
 
   It will create a `blog` directory.
