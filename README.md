@@ -34,7 +34,7 @@ Unic web framework follows the MVT (Model-View-Template) architectural pattern.
   - Install `composer` if you have not installed.
 
 ```shell
-$ composer create-project unic-framework/unic blog
+composer create-project unic-framework/unic blog
 ```
 
   It will create a `blog` directory.
