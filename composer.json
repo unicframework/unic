@@ -4,13 +4,10 @@
     "description": "Unic is a high performance, open source web framework.",
     "keywords": [
         "unic",
-        "framework",
         "unic framework",
         "php framework",
         "web framework",
-        "php web framework",
-        "mvt",
-        "php mvt framework"
+        "mvt framework"
     ],
     "homepage": "https://unic-framework.github.io/unic",
     "license": "MIT",
