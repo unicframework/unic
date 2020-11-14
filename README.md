@@ -23,7 +23,7 @@ Unic web framework follows the MVT (Model-View-Template) architectural pattern.
 
 ### Unic can be installed in few steps:
 
-  - [Download](https://github.com/unic-framework/unic/archive/master.zip) the Unic files.
+  - [Download](https://github.com/unic-framework/unic/archive/main.zip) the Unic files.
   - Unzip the package.
   - Upload all the Unic folders and files (system, application, .htaccess, index.php) on the server.
 
