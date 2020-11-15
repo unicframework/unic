@@ -89,7 +89,7 @@ class view extends Views {
 
   //Home view
   function home() {
-    return $this->response("Hello, World !!");
+    return $this->response('Hello, World !!');
   }
 }
 ```
@@ -101,7 +101,7 @@ class view extends Views {
   Let's create URL and map to views. open `app/urls.php` file and put the following code in it:
 
 ```php
-//include views
+//Include views
 include_once 'views.php';
 
 $urlpatterns = [
@@ -132,7 +132,7 @@ class view extends Views {
       'status' => true,
       'data' => 'Hello, World',
     ];
-    //send json response
+    //Send json response
     return $this->response_json($data);
   }
 }
@@ -145,7 +145,7 @@ class view extends Views {
   Let's create URL and map to views. open `app/urls.php` file and put the following code in it:
 
 ```php
-//include views
+//Include views
 include_once 'views.php';
 
 $urlpatterns = [
