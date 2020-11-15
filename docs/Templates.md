@@ -4,16 +4,16 @@
 
 #### Create a HTML template
 
-  Create a `hello.html` or `hello.php` file in a templates directory and put the following code in it.
+  Create a `home.html` or `home.php` file in a templates directory and put the following code in it.
 
 ```html
 <!DOCTYPE>
 <html>
 <head>
-  <title>Hello world</title>
+  <title>Hello, World</title>
 </head>
 <body>
-  <h1>Hello world!!</h1>
+  <h1>Hello, World!!</h1>
 </body>
 </html>
 ```
@@ -29,9 +29,9 @@ class view extends Views {
     parent::__construct();
   }
 
-  function hello() {
-    //render html templates
-    return $this->render('hello');
+  function home() {
+    //Render html templates
+    return $this->render('home');
   }
 }
 ```
@@ -46,15 +46,15 @@ class view extends Views {
     parent::__construct();
   }
 
-  function hello() {
-    //data
+  function home() {
+    //Data
     $blog = array(
       'title' => 'this is title',
       'author' => 'author name',
       'date' => '13-Fab-2020',
     );
-    //pass data to template
-    return $this->render('hello', $blog);
+    //Pass data to template
+    return $this->render('home', $blog);
   }
 }
 ```
