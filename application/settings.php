@@ -1,5 +1,4 @@
 <?php
-defined('BASEPATH') OR exit('No direct access allowed');
 
 //Set debugging mode
 $debug = true;
