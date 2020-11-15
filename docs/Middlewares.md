@@ -13,7 +13,7 @@ class middleware extends Middlewares {
   }
 
   function hello() {
-    $this->request->hello = "hello, world!";
+    $this->request->hello = 'Hello, World!';
   }
 }
 ```
