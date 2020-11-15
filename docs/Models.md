@@ -13,13 +13,13 @@ class blog extends Models {
   private $date;
 
   function __construct() {
-    //create database connection
+    //Create database connection
     $this->connect('db');
   }
 
   function get_data() {
     $result = $this->db->query('select * from blog');
-    //close database connection
+    //Close database connection
     $this->db->close();
     return $result;
   }
@@ -37,13 +37,13 @@ class blog extends Models {
   }
 
   function get_data() {
-    //select data from database
+    //Select data from database
     $result = $this->blog_db->query('select * from blog');
     return $result;
   }
 
   function put_data($title,$author) {
-    //insert data in database
+    //Insert data in database
     return $this->blog_db->query("insert into blog values('$title','$author')");
   }
 }
@@ -54,7 +54,7 @@ class blog extends Models {
   Use models in views to use database in your application.
 
 ```php
-//Include models file
+//Include models
 include_once 'models.php';
 
 class view extends Views{
@@ -63,16 +63,16 @@ class view extends Views{
   function __construct() {
     parent::__construct();
 
-    //create model object
+    //Create model object
     $this->blog = new blog();
   }
 
   function home() {
-    //get data from model
+    //Get data from model
     foreach($this->blog->get_data() as $data) {
       $blog_data[] = $data;
     }
-    //response data
+    //Response data
     return $this->response($blog_data);
   }
 }
