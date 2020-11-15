@@ -7,7 +7,7 @@
   Let's create URL and map to views. open `app/urls.php` file and put the following code in it:
 
 ```php
-//include your views
+//Include views
 include_once 'views.php';
 include_once 'product_view.php';
 
@@ -47,7 +47,7 @@ class view extends Views {
 
   function product() {
     $id = $this->request->params->id;
-    return $this->response("Product : ".$id);
+    return $this->response('Product : '.$id);
   }
 }
 ```
