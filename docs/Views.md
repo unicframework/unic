@@ -12,9 +12,9 @@ class view extends Views {
   function __construct() {
     parent::__construct();
   }
-
-  function hello_world() {
-    return $this->response("hello, world !!");
+  //Send response
+  function home() {
+    return $this->response('Hello, World !!');
   }
 }
 ```
@@ -32,9 +32,9 @@ class view extends Views {
     parent::__construct();
   }
 
-  function hello_world() {
-    //render HTML templats
-    return $this->render("hello");
+  function home() {
+    //Render HTML templats
+    return $this->render('home');
   }
 }
 ```
@@ -49,9 +49,9 @@ class view extends Views {
     parent::__construct();
   }
 
-  function hello_world() {
-    //render files.
-    return $this->render_file("cat.jpg");
+  function home() {
+    //Render files.
+    return $this->render_file('cat.jpg');
   }
 }
 ```
@@ -67,9 +67,9 @@ class view extends Views {
     parent::__construct();
   }
 
-  function hello_world() {
-    //send files.
-    return $this->send_file("cat.jpg");
+  function home() {
+    //Send files.
+    return $this->send_file('cat.jpg');
   }
 }
 ```
@@ -87,9 +87,9 @@ class view extends Views {
     parent::__construct();
   }
 
-  function hello_world() {
-    //response string data
-    return $this->response("hello, world!");
+  function home() {
+    //Response string data
+    return $this->response('Hello, World!');
   }
 }
 ```
@@ -102,9 +102,9 @@ class view extends Views {
     parent::__construct();
   }
 
-  function hello_world() {
-    //response string data with http response code
-    return $this->response("404 Page not found !!", 404);
+  function home() {
+    //Response string data with http response code
+    return $this->response('404 Page not found !!', 404);
   }
 }
 ```
@@ -119,9 +119,9 @@ class view extends Views {
     parent::__construct();
   }
 
-  function hello_world() {
-    //response json data
-    return $this->response_json(array("data" => "hello world"));
+  function home() {
+    //Response json data
+    return $this->response_json(array('data' => 'hello world'));
   }
 }
 ```
@@ -136,8 +136,8 @@ class view extends Views {
     parent::__construct();
   }
 
-  function hello_world() {
-    //response http response code
+  function home() {
+    //Response http response code
     return $this->response_code(404);
   }
 }
@@ -153,12 +153,12 @@ class view extends Views {
     parent::__construct();
   }
 
-  function hello_world() {
-    //set response header
-    $this->header("Content-Type: application/json");
+  function home() {
+    //Set response header
+    $this->header('Content-Type: application/json');
 
     //Response data
-    return $this->response("<h1>hello world</h1>");
+    return $this->response('<h1>hello world</h1>');
   }
 }
 ```
@@ -168,7 +168,7 @@ class view extends Views {
   Create a model blog and include models file in views file.
 
 ```php
-//include your models
+//Include models
 include_once 'models.php';
 
 class view extends Views {
@@ -177,7 +177,7 @@ class view extends Views {
   function __construct() {
     parent::__construct();
 
-    //create model object
+    //Create model object
     $this->blog = new blog_model();
   }
 
