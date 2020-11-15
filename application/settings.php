@@ -1,5 +1,4 @@
 <?php
-
 //Set debugging mode
 $debug = true;
 
