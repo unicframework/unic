@@ -158,10 +158,10 @@ $urlpatterns = [
 
 ## Documentation
 
-  - Learn more about Unic from [Documentation](docs/README.md) file.
+  - Learn more about Unic from [Documentation](README.md) file.
   - Documentation : https://unic-framework.github.io/unic
 
 
 ## License
 
-  [MIT License](https://github.com/unic-framework/unic/blob/master/LICENSE)
+  [MIT License](https://github.com/unic-framework/unic/blob/main/LICENSE)
