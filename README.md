@@ -56,7 +56,7 @@ class view extends Views {
 
   //Home view
   function home() {
-    return $this->response("Hello, World !!");
+    return $this->response('Hello, World !!');
   }
 }
 ```
