@@ -11,7 +11,7 @@
 
 defined('SYSPATH') OR exit('No direct access allowed');
 
-class sqlite3_db_driver extends SQLite3{
+class sqlite3_db_driver extends SQLite3 {
   //DSN
   protected $dsn;
   //User Name
@@ -28,18 +28,18 @@ class sqlite3_db_driver extends SQLite3{
   protected $char_set;
 
   function __construct($db,$name) {
-    $this->dsn=$db[$name]['dsn'];
-    $this->username=$db[$name]['username'];
-    $this->password=$db[$name]['password'];
-    $this->database=$db[$name]['database'];
-    $this->hostname=$db[$name]['hostname'];
-    $this->port=$db[$name]['port'];
-    $this->char_set=$db[$name]['char_set'];
+    $this->dsn = $db[$name]['dsn'];
+    $this->username = $db[$name]['username'];
+    $this->password = $db[$name]['password'];
+    $this->database = $db[$name]['database'];
+    $this->hostname = $db[$name]['hostname'];
+    $this->port = $db[$name]['port'];
+    $this->char_set = $db[$name]['char_set'];
 
     try {
       parent::__construct($this->database);
     } catch (Exception $error) {
-      echo 'Connect Error : '.$error->getMessage();
+      throw new Exception('Database Connection Error : '.$error->getMessage());
     }
   }
 }

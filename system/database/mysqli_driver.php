@@ -28,23 +28,23 @@ class mysqli_db_driver extends mysqli{
   protected $char_set;
 
   function __construct($db,$name) {
-    $this->dsn=$db[$name]['dsn'];
-    $this->username=$db[$name]['username'];
-    $this->password=$db[$name]['password'];
-    $this->database=$db[$name]['database'];
-    $this->hostname=$db[$name]['hostname'];
-    $this->port=$db[$name]['port'];
-    $this->char_set=$db[$name]['char_set'];
+    $this->dsn = $db[$name]['dsn'];
+    $this->username = $db[$name]['username'];
+    $this->password = $db[$name]['password'];
+    $this->database = $db[$name]['database'];
+    $this->hostname = $db[$name]['hostname'];
+    $this->port = $db[$name]['port'];
+    $this->char_set = $db[$name]['char_set'];
 
     //Create MySQLi database connection
-    parent::__construct($this->hostname,$this->username,$this->password,$this->database,$this->port);
-
-    //Set charset
-    $this->set_charset($this->char_set);
+    parent::__construct($this->hostname, $this->username, $this->password,$this->database, $this->port);
 
     //Check connection error
     if($this->connect_error) {
-      echo 'Connect Error ('.$this->connect_errno.') '.$this->connect_error;
+      throw new Exception('Database Connection Error ('.$this->connect_errno.') '.$this->connect_error);
+    } else {
+      //Set charset
+      $this->set_charset($this->char_set);
     }
   }
 }

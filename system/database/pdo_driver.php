@@ -28,16 +28,16 @@ class pdo_db_driver extends pdo{
   protected $char_set;
 
   function __construct($db,$name) {
-    $this->username=$db[$name]['username'];
-    $this->password=$db[$name]['password'];
-    $this->database=$db[$name]['database'];
-    $this->hostname=$db[$name]['hostname'];
-    $this->port=$db[$name]['port'];
-    $this->char_set=$db[$name]['char_set'];
+    $this->username = $db[$name]['username'];
+    $this->password = $db[$name]['password'];
+    $this->database = $db[$name]['database'];
+    $this->hostname = $db[$name]['hostname'];
+    $this->port = $db[$name]['port'];
+    $this->char_set = $db[$name]['char_set'];
     if($db[$name]['dsn']) {
-      $this->dsn=$db[$name]['dsn'];
+      $this->dsn = $db[$name]['dsn'];
     } else {
-      $this->dsn='mysql:host='.$this->hostname.';dbname='.$this->database.';charset='.$this->char_set;
+      $this->dsn = 'mysql:host='.$this->hostname.';dbname='.$this->database.';charset='.$this->char_set;
     }
 
     try {
@@ -45,7 +45,7 @@ class pdo_db_driver extends pdo{
       //Set the PDO error mode to exception
       $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch(PDOException $error) {
-      echo 'Connect Error : '. $error->getMessage();
+      throw new Exception('Database Connection Error : '. $error->getMessage());
     }
   }
 }
