@@ -236,7 +236,7 @@ class url_dispatcher {
   * get files mime type.
   *
   * @param string $file_path
-  * @return string|false
+  * @return string|boolean
   */
   private function get_mime_type(string $file_path) {
     //MIME Types

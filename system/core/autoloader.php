@@ -12,12 +12,6 @@
 defined('SYSPATH') OR exit('No direct access allowed');
 
 //Load system files
-if(file_exists(SYSPATH.'/core/error_handler.php')) {
-  include_once(SYSPATH.'/core/error_handler.php');
-} else {
-  exit('Error : system error handler not found.');
-}
-
 if(file_exists(SYSPATH.'/core/url_dispatcher.php')) {
   include_once(SYSPATH.'/core/url_dispatcher.php');
 } else {
@@ -97,4 +91,11 @@ if(file_exists(BASEPATH.'/application/settings.php')) {
   include_once(BASEPATH.'/application/settings.php');
 } else {
   exit('Error : application settings file not found.');
+}
+
+//Load system error handler
+if(file_exists(SYSPATH.'/core/error_handler.php')) {
+  include_once(SYSPATH.'/core/error_handler.php');
+} else {
+  exit('Error : system error handler not found.');
 }

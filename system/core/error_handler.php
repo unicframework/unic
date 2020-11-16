@@ -12,6 +12,28 @@
 defined('SYSPATH') OR exit('No direct access allowed');
 
 /**
+* Debug setting
+* Set the error_reporting directive at runtime.
+*/
+if($debug === FALSE) {
+  //Turn off all error reporting.
+  error_reporting(0);
+  if(function_exists('ini_set')) {
+    ini_set('display_errors', 0);
+  }
+} else {
+  //Turn on all error reporting.
+  //It will display E_ERROR, E_WARNING, and E_PARSE error, it will not display any E_NOTICE and other error. to display all errors use E_ALL or -1 in error_reporting.
+  error_reporting(-1);
+}
+
+//Set unic error handler
+set_error_handler('errorHandler');
+
+//Set fatal handler
+register_shutdown_function('fatalHandler');
+
+/**
 * Error Handler
 * server default error handler.
 *
@@ -21,7 +43,7 @@ defined('SYSPATH') OR exit('No direct access allowed');
 * @param integer $errline
 * @return boolean
 */
-function handleError($errno, $errstr, $errfile, $errline) {
+function errorHandler($errno, $errstr, $errfile, $errline) {
   global $debug;
   $user_error_handler = parse_errorhandler();
   //Load users error handler
@@ -38,6 +60,20 @@ function handleError($errno, $errstr, $errfile, $errline) {
       }
       return true;
     }
+  }
+}
+
+
+/**
+* Fatal Handler
+* server default fatal error handler.
+*
+* @return void
+*/
+function fatalHandler() {
+  $error = error_get_last();
+  if($error) {
+    errorHandler($error["type"], $error["message"], $error["file"], $error["line"]);
   }
 }
 
@@ -79,7 +115,7 @@ function parse_errorhandler() {
 *
 * @param array $errorhandler
 * @param integer $response_code
-* @return mixed
+* @return boolean|void
 */
 function load_error_handler($errorhandler, $response_code) {
   //Check user custom errorhandler
