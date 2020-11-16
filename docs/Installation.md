@@ -38,4 +38,4 @@ php -S localhost:8080 index.php
 composer create-project unic-framework/unic blog
 ```
 
-  It will create a `blog` directory.
+  It will create a `blog` project for you.
