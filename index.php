@@ -6,9 +6,9 @@
 *
 * @package : Unic Framework
 * @author : Rajkumar Dusad
-* @copyright : Rajkumar Dusad
+* @copyright : Unic Framework
 * @license : MIT License
-* @link : https://github.com/rajkumardusad/unic
+* @link : https://github.com/unic-framework/unic
 */
 
 //Include unic framework
