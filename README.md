@@ -37,7 +37,7 @@ Unic web framework follows the MVT (Model-View-Template) architectural pattern.
 composer create-project unic-framework/unic blog
 ```
 
-  It will create a `blog` directory.
+  It will create a `blog` project for you.
 
 
 ## Simple Example
