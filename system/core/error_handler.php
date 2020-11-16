@@ -131,6 +131,7 @@ function load_error_handler($errorhandler, $response_code) {
       if(method_exists($obj, $method)) {
         //Call the error handler method
         $obj->$method();
+        exit();
       } else {
         exit("Error : '$method' : error handler function does not exists");
       }
