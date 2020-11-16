@@ -8,29 +8,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
 <style>
-body{
-  width:100%;
-  font-family:'arial';
-  background:#fff;
+body {
+  width: 100%;
+  font-family: 'arial';
+  background: #fff;
 }
 * {
   margin:0 auto;
 }
 .container {
   width: 100%;
-  height: 85vh;
-  display: block;
-  text-align: center;
-  line-height: 85vh;
-}
-
-.container .text {
-  vertical-align: middle;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container .text h1 {
   font-size: 20px;
-  color: #222;
+  color: #111;
 }
 
 .container .text span {
