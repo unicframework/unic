@@ -298,7 +298,8 @@ class url_dispatcher {
       'ods' => 'application/vnd.oasis.opendocument.spreadsheet',
     );
 
-    $extension = strtolower(end(explode('.', $file_path)));
+    $file_ext = explode('.', $file_path);
+    $extension = strtolower(end($file_ext));
     if(isset($mime_types[$extension])) {
      return $mime_types[$extension];
     } else {
