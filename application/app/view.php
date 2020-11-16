@@ -15,4 +15,8 @@ class view extends Views {
   function page_not_found() {
     return $this->render('404');
   }
+
+  function internal_server_error() {
+    return $this->render('500');
+  }
 }
