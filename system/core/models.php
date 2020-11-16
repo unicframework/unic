@@ -33,7 +33,7 @@ class Models {
 
     foreach($db_name as $name) {
       //Check db connection already exists or not
-      if($live_connections[$name] != false) {
+      if(isset($live_connections[$name]) && $live_connections[$name] != false) {
         //Already connected
         $this->$name = $live_connections[$name];
       } else {
@@ -72,7 +72,7 @@ class Models {
           include_once(SYSPATH.'/database/'.$driver_name.'_driver.php');
           $driver = $driver_name.'_db_driver';
           if(class_exists($driver)) {
-            $live_connections[$name]=new $driver($db_setting, $name);
+            $live_connections[$name] = new $driver($db_setting, $name);
             $this->$name = &$live_connections[$name];
           } else {
              exit("'".$db_setting[$name]['driver']."' : Database driver not found");
@@ -81,7 +81,7 @@ class Models {
           exit("'".$db_setting[$name]['driver']."' : Database driver not found");
         }
       } else {
-          exit("'".$name."' : Database setting not found");
+        exit("'".$name."' : Database setting not found");
       }
     }
   }
@@ -96,49 +96,49 @@ class Models {
   */
   private function parse_db(array $db, array $connect) : array {
     //Set db_config default data type.
-    $db_config=array();
+    $db_config = array();
     foreach($connect as $name) {
       //Check database setting exists or not
       if(array_key_exists($name, $db)) {
-        if($db[$name]['dsn']==NULL) {
-          $db_config[$name]['dsn']=NULL;
+        if(isset($db[$name]['dsn']) && $db[$name]['dsn'] != NULL) {
+          $db_config[$name]['dsn'] = $db[$name]['dsn'];
         } else {
-          $db_config[$name]['dsn']=$db[$name]['dsn'];
+          $db_config[$name]['dsn'] = NULL;
         }
-        if($db[$name]['hostname']==NULL) {
-          $db_config[$name]['hostname']=NULL;
+        if(isset($db[$name]['hostname']) && $db[$name]['hostname'] != NULL) {
+          $db_config[$name]['hostname'] = $db[$name]['hostname'];
         } else {
-          $db_config[$name]['hostname']=$db[$name]['hostname'];
+          $db_config[$name]['hostname'] = NULL;
         }
-        if($db[$name]['port']==NULL) {
-          $db_config[$name]['port']=NULL;
+        if(isset($db[$name]['port']) && $db[$name]['port'] != NULL) {
+          $db_config[$name]['port'] = $db[$name]['port'];
         } else {
-          $db_config[$name]['port']=$db[$name]['port'];
+          $db_config[$name]['port'] = NULL;
         }
-        if($db[$name]['username']==NULL) {
-          $db_config[$name]['username']=NULL;
+        if(isset($db[$name]['username']) && $db[$name]['username'] != NULL) {
+          $db_config[$name]['username'] = $db[$name]['username'];
         } else {
-          $db_config[$name]['username']=$db[$name]['username'];
+          $db_config[$name]['username'] = NULL;
         }
-        if($db[$name]['password']==NULL) {
-          $db_config[$name]['password']=NULL;
+        if(isset($db[$name]['password']) && $db[$name]['password'] != NULL) {
+          $db_config[$name]['password'] = $db[$name]['password'];
         } else {
-          $db_config[$name]['password']=$db[$name]['password'];
+          $db_config[$name]['password'] = NULL;
         }
-        if($db[$name]['database']==NULL) {
-          $db_config[$name]['database']=NULL;
+        if(isset($db[$name]['database']) && $db[$name]['database'] != NULL) {
+          $db_config[$name]['database'] = $db[$name]['database'];
         } else {
-          $db_config[$name]['database']=$db[$name]['database'];
+          $db_config[$name]['database'] = NULL;
         }
-        if($db[$name]['driver']==NULL) {
-          $db_config[$name]['driver']=NULL;
+        if(isset($db[$name]['driver']) && $db[$name]['driver'] != NULL) {
+          $db_config[$name]['driver'] = $db[$name]['driver'];
         } else {
-          $db_config[$name]['driver']=$db[$name]['driver'];
+          $db_config[$name]['driver'] = NULL;
         }
-        if($db[$name]['char_set']==NULL) {
-          $db_config[$name]['char_set']=NULL;
+        if(isset($db[$name]['char_set']) && $db[$name]['char_set'] != NULL) {
+          $db_config[$name]['char_set'] = $db[$name]['char_set'];
         } else {
-          $db_config[$name]['char_set']=$db[$name]['char_set'];
+          $db_config[$name]['char_set'] = NULL;
         }
       } else {
         exit("'".$name."' : Database setting not found");
