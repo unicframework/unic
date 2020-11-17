@@ -362,10 +362,10 @@ class user_agent{
 
   //checking user is referred or not
   function get_referrer() {
-    if ($_SERVER['HTTP_REFERER'] == '') {
-      return false;
-     } else {
+    if(isset($_SERVER['HTTP_REFERER'])) {
       return $_SERVER['HTTP_REFERER'];
+     } else {
+      return false;
      }
   }
 
