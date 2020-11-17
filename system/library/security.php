@@ -12,7 +12,7 @@
 
 defined('SYSPATH') OR exit('No direct access allowed');
 
-class security{
+class security {
   //get csrf_token
   public function get_csrf_token() {
     //check csrf token is already generated or not
@@ -93,6 +93,7 @@ class security{
     if(isset($_COOKIE['csrf_token'])) {
       $token = $_COOKIE['csrf_token'];
       unset($_COOKIE['csrf_token']);
+      setcookie('csrf_token', '', -1, '/');
     } else {
       if(!session_id()) {
         session_start();
