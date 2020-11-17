@@ -70,7 +70,9 @@ class security {
         if(isset($_COOKIE['csrf_token'])) {
           $_COOKIE['csrf_token'] = $token;
         } else {
-          session_start();
+          if(!session_id()) {
+            session_start();
+          }
           $_SESSION['csrf_token'] = $token;
         }
       }
