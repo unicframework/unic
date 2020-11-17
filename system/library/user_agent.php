@@ -33,7 +33,7 @@ class user_agent{
     $this->browser_version = $this->get_browser_version();
     $this->device_type = $this->get_device_type();
     $this->device_brand = $this->get_device_brand();
-    $this->referrer = $this->get_referrer;
+    $this->referrer = $this->get_referrer();
     $this->is_referred = isset($_SERVER['HTTP_REFERER']) ? TRUE : FALSE;
   }
 
