@@ -5,7 +5,7 @@
 
 ### Create a view
 
-  Let’s write the first view. open the `app/views.php` file and put the following PHP code in it:
+  Let’s write the first view. open the `app/view.php` file and put the following PHP code in it:
 
 ```php
 class view extends Views {
