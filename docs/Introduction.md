@@ -34,6 +34,8 @@ The Template is a presentation layer which handles User Interface part. The View
 
 ### Directory Structure of Unic
 
+Unic web framework has very simple and clean directory structure.
+
 ```
 unic
 ├── application
@@ -51,14 +53,16 @@ unic
 └── index.php
 ```
 
+Unic framework allows users to create their own directory structure.
+
 #### System directory
   system directory is main system directory of unic framework, where all the system files are stored.
 
 #### Application directory
-  application is main project directory that contains all your apps and project files. you can change this default application directory to different location, set the new APP_DIR path in index.php to change the default application directory. all your app project files (settings, urls) shold be inside the application directory.
+  application is main project directory that contains all your apps and project files (urls, view, model, etc)
 
 #### App directory
-  app is demo application of your project. your can create new apps like login, admin, news, blogs or any app that you want. your app directory contains views, models and urls files.
+  app is demo application of your project. your can create new apps like login, admin, news, blogs or any app that you want. your app directory contains view, model and urls files.
 
 #### Templates directory
   templates directory contains all your HTML template files.
