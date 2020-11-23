@@ -1,10 +1,10 @@
 ## Middleware
 
-  A Middleware is a small piece of code that is used to alter web application request/response cycle.
+  A Middleware is a small piece of code that is used to alter web application `request/response` cycle.
 
 ### Create Middleware
 
-  Let's create a `middleware.php` file, you can name it anything. you middleware class name should be match with file name.
+  Let's create a `middleware.php` file in your app directory, you can name it anything. you middleware class name should be match with file name.
 
 ```php
 class middleware extends Middlewares {
@@ -20,10 +20,10 @@ class middleware extends Middlewares {
 
   This a example of `hello, world` middleware. this middleware add a `hello` variable in request.
 
-### Install Middleware
+### Global Middleware
 
-  Go to your `settings.php` file and add your middleware in middlewares. you can set your middleware as global middleware and local middleware. a global middleware execute on every request and your local middleware runs when a specific view (Routes) called. In `settings.php` file you can install your global middlewares.
-  
+  Go to your `settings.php` file and add your middleware in middlewares.
+
 ```php
 //Install your middlewares
 $middlewares = [
@@ -31,7 +31,9 @@ $middlewares = [
 ];
 ```
 
-### Set Local Middleware
+  you can set your middleware as global middleware and local middleware. a global middleware execute on every request.
+
+### Local Middleware
 
   You can set your local middleware in `urls.php` file.
 
@@ -42,8 +44,10 @@ $urlpatterns = [
 ];
 ```
 
+  local middlewares runs only when a specific view (Routes) called.
 
-### Set Group Middleware
+
+### Group Middleware
 
   You can set your group middleware in `urls.php` file.
 
@@ -62,3 +66,5 @@ $urlpatterns = [
   ],
 ];
 ```
+
+You can create a group of local middlewares for any route.
