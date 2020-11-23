@@ -4,7 +4,7 @@
 
 ### Create a model
 
-  Let’s create the first model. Open the `app/models.php` file and put the following PHP code in it:
+  Let’s create the first model. Open the `app/model.php` file and put the following PHP code in it:
 
 ```php
 class blog extends Models {
@@ -55,7 +55,7 @@ class blog extends Models {
 
 ```php
 //Include models
-include_once 'models.php';
+include_once 'model.php';
 
 class view extends Views{
   private $blog;
