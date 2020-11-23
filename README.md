@@ -46,7 +46,7 @@ composer create-project unic-framework/unic blog
 
 ### Create View
 
-  Let’s write the first view. Open the `app/views.php` file and put the following PHP code in it:
+  Let’s write the first view. Open the `app/view.php` file and put the following PHP code in it:
 
 ```php
 class view extends Views {
@@ -85,7 +85,7 @@ $urlpatterns = [
 
 ### Create View
 
-  Let’s write the first view. Open the `app/views.php` file and put the following PHP code in it:
+  Let’s write the first view. Open the `app/view.php` file and put the following PHP code in it:
 
 ```php
 class view extends Views {
