@@ -4,7 +4,7 @@
 
 ### Create Middleware
 
-  Let's create a `middleware.php` file in your app directory, you can name it anything. you middleware class name should be match with file name.
+  Let's create a `middleware.php` file in your `app` directory, you can name it anything. you middleware class name should be match with file name.
 
 ```php
 class middleware extends Middlewares {
