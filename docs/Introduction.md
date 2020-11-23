@@ -53,7 +53,7 @@ unic
 └── index.php
 ```
 
-Unic framework allows users to create their own directory structure.
+In unic framework you can create your own directory structure.
 
 #### System directory
   system directory is main system directory of unic framework, where all the system files are stored.
