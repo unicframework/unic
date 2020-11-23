@@ -28,8 +28,13 @@ Unic is fast and lightweight php web framework. Unic framework is very simple an
   <br/>
 </p>
 
-Unic web framework based on MVT (Model-View-Template) architecture. The MVT (Model-View-Template) is a software design pattern. The Model helps to handle database. It is a data access layer which handles the database.
-The Template is a presentation layer which handles User Interface part. The View is used to execute the business logic and interact with a model to carry data and renders a template.
+Unic web framework based on MVT (Model-View-Template) architecture. The MVT (Model-View-Template) is a software design pattern.
+
+The Model helps to handle database. It is a data access layer which handles the database.
+
+The Template is a presentation layer which handles User Interface part.
+
+The View is used to execute the business logic and interact with a model to carry data and renders a template.
 
 
 ### Directory Structure of Unic
