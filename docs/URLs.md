@@ -8,7 +8,7 @@
 
 ```php
 //Include views
-include_once 'views.php';
+include_once 'view.php';
 include_once 'product_view.php';
 
 $urlpatterns = [
