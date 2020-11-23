@@ -79,7 +79,7 @@ Unic web framework follows the MVT (Model-View-Template) architectural pattern.
 
 ### Create View
 
-  Let’s write the first view. Open the `app/views.php` file and put the following PHP code in it:
+  Let’s write the first view. Open the `app/view.php` file and put the following PHP code in it:
 
 ```php
 class view extends Views {
@@ -102,7 +102,7 @@ class view extends Views {
 
 ```php
 //Include views
-include_once 'views.php';
+include_once 'view.php';
 
 $urlpatterns = [
   '/' => 'view.home',
@@ -118,7 +118,7 @@ $urlpatterns = [
 
 ### Create View
 
-  Let’s write the first view. Open the `app/views.php` file and put the following PHP code in it:
+  Let’s write the first view. Open the `app/view.php` file and put the following PHP code in it:
 
 ```php
 class view extends Views {
@@ -146,7 +146,7 @@ class view extends Views {
 
 ```php
 //Include views
-include_once 'views.php';
+include_once 'view.php';
 
 $urlpatterns = [
   '/' => 'view.home',
