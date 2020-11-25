@@ -208,7 +208,7 @@ class response {
     }
 
     //Render html templates.
-    if($template_path) {
+    if(isset($template_path)) {
       require($template_path);
     } else {
       http_response_code(500);
