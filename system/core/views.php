@@ -50,7 +50,7 @@ class Views extends response {
   */
   protected function url(string $path=NULL) {
     $base_url = ((isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] === 'on' || $_SERVER['HTTPS'] === 1)) || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') || (isset($_SERVER['HTTP_FRONT_END_HTTPS']) && strtolower($_SERVER['HTTP_FRONT_END_HTTPS'])!== 'off') ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'].'/';
-    if($path){
+    if(isset($path)) {
       $path = ltrim($path, '/');
       return rtrim($base_url, '/').'/'.$path;
     } else {
@@ -68,7 +68,7 @@ class Views extends response {
   protected function static(string $path=NULL) {
     global $static_url;
     $static = rtrim($this->url(), '/').'/'.ltrim($static_url, '/');
-    if($path){
+    if(isset($path)) {
       $path = ltrim($path, '/');
       return rtrim($static, '/').'/'.$path;
     } else {
@@ -81,10 +81,10 @@ class Views extends response {
   * Raise user defined custom error.
   *
   * @param string $errstr
-  * @param integer $ERROR
+  * @param integer $error
   * @return void
   */
-  protected function raise(string $errstr, $ERROR = E_USER_ERROR) {
-    trigger_error($errstr, $ERROR);
+  protected function raise(string $errstr, $error = E_USER_ERROR) {
+    trigger_error($errstr, $error);
   }
 }
