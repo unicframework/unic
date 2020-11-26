@@ -44,10 +44,14 @@ class response {
     global $request, $session, $cookie, $templates;
 
     //Get application template directory.
-    if(is_array($templates)) {
-      $this->templates = $templates;
+    if(isset($templates)) {
+      if(is_array($templates)) {
+        $this->templates = $templates;
+      } else {
+        $this->templates = array($templates);
+      }
     } else {
-      $this->templates = array($templates);
+      $this->templates = array();
     }
 
     $this->request = &$request;
@@ -66,7 +70,7 @@ class response {
   */
   protected function header(string $header, bool $replace=TRUE, int $http_response_code=NULL) {
     //Set HTTP header
-    if($http_response_code) {
+    if(isset($http_response_code)) {
       header($header, $replace, $http_response_code);
     } else {
       header($header, $replace);
@@ -96,15 +100,15 @@ class response {
   */
   protected function redirect(string $url, string $method=NULL, int $http_response_code=NULL) {
     //Set http response code
-    if($http_response_code) {
+    if(isset($http_response_code)) {
       http_response_code($http_response_code);
     }
     //IIS environment use 'refresh' for better compatibility
-    if($method && isset($_SERVER['SERVER_SOFTWARE']) && strpos($_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS') !== FALSE) {
+    if(isset($method) && isset($_SERVER['SERVER_SOFTWARE']) && strpos($_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS') !== FALSE) {
       $method = 'refresh';
     }
     //Redirect URLs
-    if($url && $method) {
+    if(isset($method)) {
       if(strtolower($method) === 'refresh') {
         header("Refresh: 0; url=$url");
       }
@@ -122,18 +126,16 @@ class response {
   * @return void
   */
   protected function response($string, int $http_response_code=NULL) {
-    if($http_response_code) {
+    if(isset($http_response_code)) {
       //Set http response code
       http_response_code($http_response_code);
     }
     //Render string data.
-    if($string) {
-      //Check string data type.
-      if(is_array($string)) {
-        print_r($string);
-      } else {
-        echo $string;
-      }
+    //Check string data type.
+    if(is_array($string)) {
+      print_r($string);
+    } else {
+      echo $string;
     }
   }
   
@@ -159,20 +161,18 @@ class response {
   protected function response_json($data, int $http_response_code=NULL) {
     //Set header content type for json response.
     header('Content-type: application/json');
-    if($http_response_code) {
+    if(isset($http_response_code)) {
       //Set http response code
       http_response_code($http_response_code);
     }
     //Render json data.
-    if($data) {
-      //Check string data type.
-      if(is_array($data)) {
-        echo json_encode($data);
-      } else if($this->is_json($data)) {
-        echo $data;
-      } else {
-        echo json_encode(array($data));
-      }
+    //Check string data type.
+    if(is_array($data)) {
+      echo json_encode($data);
+    } else if($this->is_json($data)) {
+      echo $data;
+    } else {
+      echo json_encode(array($data));
     }
   }
 
@@ -187,7 +187,7 @@ class response {
   protected function render(string $template, array $user_variable=NULL) {
 
     //Set variables of array.
-    if(is_array($user_variable)) {
+    if(isset($user_variable) && is_array($user_variable)) {
       foreach($user_variable as $variable => $value) {
         ${$variable} = $value;
       }
@@ -229,13 +229,13 @@ class response {
     //Render files.
     if(is_file($file_path)) {
       //Set header content type.
-      if($mime_type) {
+      if(isset($mime_type)) {
         header('Content-type: '.$mime_type);
       } else {
         header('Content-type: '.mime_content_type($file_path));
       }
       header('Content-Length: '.$this->get_filesize($file_path));
-      if($http_response_code) {
+      if(isset($http_response_code)) {
         //Set http response code
         http_response_code($http_response_code);
       }
@@ -277,7 +277,7 @@ class response {
   */
   protected function send_file(string $file_path, int $http_response_code=NULL) {
     if(is_file($file_path)) {
-      if($http_response_code) {
+      if(isset($http_response_code)) {
         //Set http response code
         http_response_code($http_response_code);
       }
