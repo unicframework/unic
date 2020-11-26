@@ -28,7 +28,7 @@ class router {
 
   function __construct() {
     global $urlpatterns;
-    if(!is_array($urlpatterns)) {
+    if(!isset($urlpatterns) || !is_array($urlpatterns)) {
       $urlpatterns = array();
     }
     $this->url_dispatcher = new url_dispatcher($urlpatterns);
