@@ -51,13 +51,11 @@ class cookie {
   * Get Cookie
   *
   * @param string $name
-  * @return mixed
+  * @return string|void
   */
   public function get(string $name) {
     if(isset($_COOKIE[$name])) {
       return $_COOKIE[$name];
-    } else {
-      return false;
     }
   }
 
