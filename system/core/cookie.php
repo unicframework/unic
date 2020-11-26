@@ -84,7 +84,9 @@ class cookie {
   * @return boolean
   */
   public function delete(string $name, string $path='/', string $domain='') {
-    unset($this->$name);
+    if(isset($this->$name)) {
+      unset($this->$name);
+    }
     return setcookie($name, '', -1, $path, $domain);
   }
 }
