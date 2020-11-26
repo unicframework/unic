@@ -38,7 +38,7 @@ class Models {
         $this->$name = $live_connections[$name];
       } else {
         //Check db settings
-        if(is_array($db)) {
+        if(isset($db) && is_array($db)) {
           $db_setting_array = $db;
         } else {
           exit('Invalid database setting');
