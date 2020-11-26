@@ -22,7 +22,7 @@ class session {
     }
     if(isset($_SESSION)) {
       foreach($_SESSION as $var => $val) {
-        $this->$var = $val;
+        $this->$var = &$_SESSION[$var];
       }
     }
   }
@@ -31,13 +31,13 @@ class session {
   * Set Session
   *
   * @param string $name
-  * @param string $val
+  * @param string $value
   * @return void
   */
-  public function set(string $name, $val=NULL) {
-    if(isset($val)) {
-      $this->$name = $val;
-      $_SESSION[$name] = $val;
+  public function set(string $name, $value='') {
+    if(isset($value)) {
+      $_SESSION[$name] = $value;
+      $this->$name = &$_SESSION[$name];
     }
   }
 
