@@ -22,7 +22,7 @@ class session {
     }
     if(isset($_SESSION)) {
       foreach($_SESSION as $var => $val) {
-        $this->$var=$val;
+        $this->$var = $val;
       }
     }
   }
@@ -31,13 +31,13 @@ class session {
   * Set Session
   *
   * @param string $name
-  * @param string $data
-  * @return string
+  * @param string $val
+  * @return void
   */
-  public function set(string $name, $data=NULL) {
-    if($data) {
-      $this->$name = $data;
-      return $_SESSION[$name] = $data;
+  public function set(string $name, $val=NULL) {
+    if(isset($val)) {
+      $this->$name = $val;
+      $_SESSION[$name] = $val;
     }
   }
 
@@ -47,8 +47,8 @@ class session {
   * @param string $name
   * @return mixed
   */
-  public function get(string $name=NULL) {
-    if($name) {
+  public function get(string $name) {
+    if(isset($_SESSION[$name])) {
       return $_SESSION[$name];
     } else {
       return false;
@@ -75,9 +75,11 @@ class session {
   * @param string $data
   * @return void
   */
-  public function delete(string $name=NULL) {
-    if($name) {
+  public function delete(string $name) {
+    if(isset($this->$name)) {
       unset($this->$name);
+    }
+    if(isset($_SESSION[$name])) {
       unset($_SESSION[$name]);
     }
   }
