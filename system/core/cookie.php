@@ -36,7 +36,7 @@ class cookie {
   * @return boolean
   */
   public function set(string $name, string $value='', int $expire=0, string $path='/', string $domain='', bool $secure=FALSE, bool $httponly=FALSE) {
-    if($value) {
+    if(isset($value)) {
       //Set cookie data
       if(setcookie($name, $value, $expire, $path, $domain, $secure, $httponly)) {
         $this->$name = &$_COOKIE[$name];
@@ -53,8 +53,8 @@ class cookie {
   * @param string $name
   * @return mixed
   */
-  public function get(string $name=NULL) {
-    if($name != NULL) {
+  public function get(string $name) {
+    if(isset($_COOKIE[$name])) {
       return $_COOKIE[$name];
     } else {
       return false;
