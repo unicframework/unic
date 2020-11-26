@@ -45,13 +45,11 @@ class session {
   * Get Session
   *
   * @param string $name
-  * @return mixed
+  * @return string|void
   */
   public function get(string $name) {
     if(isset($_SESSION[$name])) {
       return $_SESSION[$name];
-    } else {
-      return false;
     }
   }
 
