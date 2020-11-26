@@ -310,10 +310,12 @@ class request {
   * Get server all informarion
   *
   * @param string $server_index
-  * @return string
+  * @return string|void
   */
   public function server($server_index) {
     $server_index = strtoupper($server_index);
-    return $_SERVER[$server_index];
+    if(isset($_SERVER[$server_index])) {
+      return $_SERVER[$server_index];
+    }
   }
 }
