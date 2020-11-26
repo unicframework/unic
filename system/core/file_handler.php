@@ -42,6 +42,6 @@ class file_handler {
   * @return boolean
   */
   public function upload(string $tmp_name, string $destination) {
-    return move_uploaded_file($tmp_name,$destination);
+    return move_uploaded_file($tmp_name, $destination);
   }
 }
