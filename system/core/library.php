@@ -25,7 +25,11 @@ class library {
 
   function __construct() {
     global $libraries;
-    $this->libraries = $this->parse_library($libraries);
+    if(isset($libraries)) {
+      $this->libraries = $this->parse_library($libraries);
+    } else {
+      $this->libraries = array();
+    }
   }
 
   /**
