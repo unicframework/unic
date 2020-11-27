@@ -46,16 +46,23 @@ class router {
     $request = new request();
     $session = new session();
     $cookie = new cookie();
+    //Load libraries
     $this->library->load_library();
-    if(!is_array($middlewares)) {
+    //Run global middlewares
+    if(!isset($middlewares) || !is_array($middlewares)) {
       $middlewares = array();
     }
     $this->run_middleware($middlewares);
-    $route = $this->url_dispatcher->match_routes($request->path);
     //Parse allowed hosts
-    $allowed_hosts = is_array($allowed_hosts) ? $allowed_hosts : array($allowed_hosts);
+    if(isset($allowed_hosts)) {
+      $allowed_hosts = is_array($allowed_hosts) ? $allowed_hosts : array($allowed_hosts);
+    } else {
+      $allowed_hosts = array();
+    }
     //Verify allowed hosts
     if(empty($allowed_hosts) || in_array($request->hostname, $allowed_hosts)) {
+      //Match url routes
+      $route = $this->url_dispatcher->match_routes($request->path);
       if(!empty($route)) {
         //Serve static files
         if(array_key_exists('file_path', $route)) {
@@ -67,11 +74,7 @@ class router {
           //Check route middleware
           if(is_array($route['view'])) {
             //Run middleware
-            if(!is_array($route['view']['middleware'])) {
-              $this->run_middleware(array($route['view']['middleware']));
-            } else {
-              $this->run_middleware($route['view']['middleware']);
-            }
+            $this->run_middleware($route['view']['middleware']);
             $this->run_view($route['view']['view']);
           } else {
             $this->run_view($route['view']);
@@ -92,49 +95,48 @@ class router {
   * @param array $middlewares
   * @return void
   */
-  private function run_middleware(array $middlewares) {
+  private function run_middleware($middlewares) {
+    if(!is_array($middlewares)) {
+      $middlewares = array($middlewares);
+    }
     //Load middlewares
-    if(is_array($middlewares)) {
-      if(!empty($middlewares)) {
-        foreach($middlewares as $middleware) {
-          if(is_array($middleware)) {
-            exit("Error : 'middleware' invalid format");
-          } else {
-            //Get middleware name
-            $middleware_name = basename($middleware);
+    if(!empty($middlewares)) {
+      foreach($middlewares as $middleware) {
+        if(is_array($middleware)) {
+          exit("Error : 'middleware' invalid format");
+        } else {
+          //Get middleware name
+          $middleware_name = basename($middleware);
 
-            //Get views class name and method name
-            list($class, $method)=explode('.', $middleware_name);
-            //Get middleware path
-            $file_path = trim(dirname($middleware), '/').'/'.$class.'.php';
-            //Check middleware exists or not
-            if(file_exists(BASEPATH.'/application/'.$file_path)) {
-              include_once(BASEPATH.'/application/'.$file_path);
-              //Check view class exists or not
-              if(class_exists($class)) {
-                //Create view object
-                $class_object = new $class;
-                //Check in views class method exists or not
-                if(isset($method)) {
-                  if(method_exists($class_object, $method)) {
-                    //Execute view method
-                    $class_object->$method();
-                  } else {
-                    exit("Error : '$method' middleware not found");
-                  }
+          //Get views class name and method name
+          list($class, $method)=explode('.', $middleware_name);
+          //Get middleware path
+          $file_path = trim(dirname($middleware), '/').'/'.$class.'.php';
+          //Check middleware exists or not
+          if(file_exists(BASEPATH.'/application/'.$file_path)) {
+            include_once(BASEPATH.'/application/'.$file_path);
+            //Check view class exists or not
+            if(class_exists($class)) {
+              //Create view object
+              $class_object = new $class;
+              //Check in views class method exists or not
+              if(isset($method)) {
+                if(method_exists($class_object, $method)) {
+                  //Execute view method
+                  $class_object->$method();
+                } else {
+                  exit("Error : '$method' middleware not found");
                 }
-              } else {
-                exit("Error : '$class' middleware not found");
               }
-
             } else {
-              exit("Error : '$file_path' middleware file not found");
+              exit("Error : '$class' middleware not found");
             }
+
+          } else {
+            exit("Error : '$file_path' middleware file not found");
           }
         }
       }
-    } else {
-      exit("Error : 'middleware' invalid format");
     }
   }
 
