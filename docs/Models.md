@@ -57,7 +57,7 @@ class blog extends Models {
 //Include models
 require_once 'model.php';
 
-class view extends Views{
+class view extends Views {
   private $blog;
 
   function __construct() {
