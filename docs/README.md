@@ -105,7 +105,7 @@ class view extends Views {
 
 ```php
 //Include views
-include_once 'view.php';
+require_once 'view.php';
 
 $urlpatterns = [
   '/' => 'view.home',
@@ -149,7 +149,7 @@ class view extends Views {
 
 ```php
 //Include views
-include_once 'view.php';
+require_once 'view.php';
 
 $urlpatterns = [
   '/' => 'view.home',
