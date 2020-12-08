@@ -169,7 +169,7 @@ class view extends Views {
 
 ```php
 //Include models
-include_once 'model.php';
+require_once 'model.php';
 
 class view extends Views {
   private $blog;
