@@ -70,6 +70,7 @@ class request {
   public $purge;
   public $propfind;
   public $view;
+  public $any;
   public $is_secure;
   public $is_ajax;
   public $is_get;
@@ -227,6 +228,7 @@ class request {
     $this->purge = ($this->method === 'PURGE' && isset($request_data)) ? $request_data : NULL;
     $this->propfind = ($this->method === 'PROPFIND' && isset($request_data)) ? $request_data : NULL;
     $this->view = ($this->method === 'VIEW' && isset($request_data)) ? $request_data : NULL;
+    $this->any = isset($request_data) ? $request_data : NULL;
 
     //check connection is secure
     $this->is_secure = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] === 'on' || $_SERVER['HTTPS'] === 1)) || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') || (isset($_SERVER['HTTP_FRONT_END_HTTPS']) && strtolower($_SERVER['HTTP_FRONT_END_HTTPS'])!== 'off') ? TRUE : FALSE;
