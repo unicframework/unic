@@ -209,23 +209,24 @@ class request {
     */
     //get all request data
     parse_str(file_get_contents('php://input'), $request_data);
-    $this->get = json_decode(json_encode($_GET));
-    $this->post = json_decode(json_encode($_POST));
-    $this->put = ($this->method === 'PUT' && isset($request_data)) ? json_decode(json_encode($request_data)) : NULL;
-    $this->delete = ($this->method === 'DELETE' && isset($request_data)) ? json_decode(json_encode($request_data)) : NULL;
-    $this->patch = ($this->method === 'PATCH' && isset($request_data)) ? json_decode(json_encode($request_data)) : NULL;
-    $this->head = ($this->method === 'HEAD' && isset($request_data)) ? json_decode(json_encode($request_data)) : NULL;
-    $this->options = ($this->method === 'OPTIONS' && isset($request_data)) ? json_decode(json_encode($request_data)) : NULL;
-    $this->connect = ($this->method === 'CONNECT' && isset($request_data)) ? json_decode(json_encode($request_data)) : NULL;
-    $this->trace = ($this->method === 'TRACE' && isset($request_data)) ? json_decode(json_encode($request_data)) : NULL;
-    $this->copy = ($this->method === 'COPY' && isset($request_data)) ? json_decode(json_encode($request_data)) : NULL;
-    $this->link = ($this->method === 'LINK' && isset($request_data)) ? json_decode(json_encode($request_data)) : NULL;
-    $this->unlink = ($this->method === 'UNLINK' && isset($request_data)) ? json_decode(json_encode($request_data)) : NULL;
-    $this->lock = ($this->method === 'LOCK' && isset($request_data)) ? json_decode(json_encode($request_data)) : NULL;
-    $this->unlock = ($this->method === 'UNLOCK' && isset($request_data)) ? json_decode(json_encode($request_data)) : NULL;
-    $this->purge = ($this->method === 'PURGE' && isset($request_data)) ? json_decode(json_encode($request_data)) : NULL;
-    $this->propfind = ($this->method === 'PROPFIND' && isset($request_data)) ? json_decode(json_encode($request_data)) : NULL;
-    $this->view = ($this->method === 'VIEW' && isset($request_data)) ? json_decode(json_encode($request_data)) : NULL;
+    $request_data = (object) $request_data;
+    $this->get = (object) $_GET;
+    $this->post = (object) $_POST;
+    $this->put = ($this->method === 'PUT' && isset($request_data)) ? $request_data : NULL;
+    $this->delete = ($this->method === 'DELETE' && isset($request_data)) ? $request_data : NULL;
+    $this->patch = ($this->method === 'PATCH' && isset($request_data)) ? $request_data : NULL;
+    $this->head = ($this->method === 'HEAD' && isset($request_data)) ? $request_data : NULL;
+    $this->options = ($this->method === 'OPTIONS' && isset($request_data)) ? $request_data : NULL;
+    $this->connect = ($this->method === 'CONNECT' && isset($request_data)) ? $request_data : NULL;
+    $this->trace = ($this->method === 'TRACE' && isset($request_data)) ? $request_data : NULL;
+    $this->copy = ($this->method === 'COPY' && isset($request_data)) ? $request_data : NULL;
+    $this->link = ($this->method === 'LINK' && isset($request_data)) ? $request_data : NULL;
+    $this->unlink = ($this->method === 'UNLINK' && isset($request_data)) ? $request_data : NULL;
+    $this->lock = ($this->method === 'LOCK' && isset($request_data)) ? $request_data : NULL;
+    $this->unlock = ($this->method === 'UNLOCK' && isset($request_data)) ? $request_data : NULL;
+    $this->purge = ($this->method === 'PURGE' && isset($request_data)) ? $request_data : NULL;
+    $this->propfind = ($this->method === 'PROPFIND' && isset($request_data)) ? $request_data : NULL;
+    $this->view = ($this->method === 'VIEW' && isset($request_data)) ? $request_data : NULL;
 
     //check connection is secure
     $this->is_secure = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] === 'on' || $_SERVER['HTTPS'] === 1)) || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') || (isset($_SERVER['HTTP_FRONT_END_HTTPS']) && strtolower($_SERVER['HTTP_FRONT_END_HTTPS'])!== 'off') ? TRUE : FALSE;
@@ -234,16 +235,16 @@ class request {
     $this->is_ajax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest' ? TRUE : FALSE;
 
     //check request method is get or not
-    $this->is_get = $this->method==='GET' ? TRUE : FALSE;
+    $this->is_get = $this->method === 'GET' ? TRUE : FALSE;
 
     //check request method is post or not
-    $this->is_post = $this->method==='POST' ? TRUE : FALSE;
+    $this->is_post = $this->method === 'POST' ? TRUE : FALSE;
 
     //check request method is put or not
-    $this->is_put = $this->method==='PUT' ? TRUE : FALSE;
+    $this->is_put = $this->method === 'PUT' ? TRUE : FALSE;
 
     //check request method is delete or not
-    $this->is_delete = $this->method==='DELETE' ? TRUE : FALSE;
+    $this->is_delete = $this->method === 'DELETE' ? TRUE : FALSE;
 
     //check request method is patch or not
     $this->is_patch = $this->method === 'PATCH' ? TRUE : FALSE;
@@ -252,43 +253,43 @@ class request {
     $this->is_head = $this->method === 'HEAD' ? TRUE : FALSE;
 
     //check request method is options or not
-    $this->is_options = $this->method==='OPTIONS' ? TRUE : FALSE;
+    $this->is_options = $this->method === 'OPTIONS' ? TRUE : FALSE;
 
     //check request method is connect or not
-    $this->is_connect = $this->method==='CONNECT' ? TRUE : FALSE;
+    $this->is_connect = $this->method === 'CONNECT' ? TRUE : FALSE;
 
     //check request method is trace or not
-    $this->is_trace = $this->method==='TRACE' ? TRUE : FALSE;
+    $this->is_trace = $this->method === 'TRACE' ? TRUE : FALSE;
 
     //check request method is copy or not
-    $this->is_copy = $this->method==='COPY' ? TRUE : FALSE;
+    $this->is_copy = $this->method === 'COPY' ? TRUE : FALSE;
 
     //check request method is link or not
-    $this->is_link = $this->method==='LINK' ? TRUE : FALSE;
+    $this->is_link = $this->method === 'LINK' ? TRUE : FALSE;
 
     //check request method is unlink or not
-    $this->is_unlink = $this->method==='UNLINK' ? TRUE : FALSE;
+    $this->is_unlink = $this->method === 'UNLINK' ? TRUE : FALSE;
 
     //check request method is lock or not
-    $this->is_lock = $this->method==='LOCK' ? TRUE : FALSE;
+    $this->is_lock = $this->method === 'LOCK' ? TRUE : FALSE;
 
     //check request method is unlock or not
-    $this->is_unlock = $this->method==='UNLOCK' ? TRUE : FALSE;
+    $this->is_unlock = $this->method === 'UNLOCK' ? TRUE : FALSE;
 
     //check request method is purge or not
-    $this->is_purge = $this->method==='PURGE' ? TRUE : FALSE;
+    $this->is_purge = $this->method === 'PURGE' ? TRUE : FALSE;
 
     //check request method is propfind or not
-    $this->is_propfind = $this->method==='PROPFIND' ? TRUE : FALSE;
+    $this->is_propfind = $this->method === 'PROPFIND' ? TRUE : FALSE;
 
     //check request method is view or not
-    $this->is_view = $this->method==='VIEW' ? TRUE : FALSE;
+    $this->is_view = $this->method === 'VIEW' ? TRUE : FALSE;
 
     //check protocol https or not
-    $this->is_http = $this->scheme==='http' ? TRUE : FALSE;
+    $this->is_http = $this->scheme === 'http' ? TRUE : FALSE;
 
     //check protocol is http or not
-    $this->is_https = $this->scheme==='https' ? TRUE : FALSE;
+    $this->is_https = $this->scheme === 'https' ? TRUE : FALSE;
 
     //get files data
     $this->files = new file_handler();
