@@ -1,17 +1,19 @@
 ## User Agent Library
 
-  User Agent Library is parse data from user agent.
+  Get client browser all data. User agent library parse clients all data from request.
 
-  - `ip` : get user ip address.
-  - `os' : get user device os name.
-  - `os_version` : get user device os version.
-  - `browser` : get user browser name.
-  - `browser_version` : get user browser version.
-  - `device_type` : get user device type.
-  - `device_brand` : get user device brand.
-  - `referrer` : get http referrer.
-  - `is_referred` : check request is referred or not.
-  - `agent` : get user agent.
+  - **ip** : get user ip address.
+  - **os** : get user device os name.
+  - **os_version** : get user device os version.
+  - **browser** : get user browser name.
+  - **browser_version** : get user browser version.
+  - **device_type** : get user device type.
+  - **device_brand** : get user device brand.
+  - **referrer** : get http referrer.
+  - **is_referred** : check request is referred or not.
+  - **agent** : get user agent.
+
+### Example
 
 ```php
 class view extends Views {
