@@ -69,7 +69,7 @@ class Models {
       if(array_key_exists($name, $db_setting)) {
         $driver_name = strtolower($db_setting[$name]['driver']);
         if(file_exists(SYSPATH.'/database/'.$driver_name.'_driver.php')) {
-          include_once(SYSPATH.'/database/'.$driver_name.'_driver.php');
+          require_once(SYSPATH.'/database/'.$driver_name.'_driver.php');
           $driver = $driver_name.'_db_driver';
           if(class_exists($driver)) {
             $live_connections[$name] = new $driver($db_setting, $name);

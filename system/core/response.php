@@ -209,7 +209,7 @@ class response {
 
     //Render html templates.
     if(isset($template_path)) {
-      require($template_path);
+      require_once($template_path);
     } else {
       http_response_code(500);
       exit("Error : '$template' template not found");

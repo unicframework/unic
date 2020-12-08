@@ -114,7 +114,7 @@ class router {
           $file_path = trim(dirname($middleware), '/').'/'.$class.'.php';
           //Check middleware exists or not
           if(file_exists(BASEPATH.'/application/'.$file_path)) {
-            include_once(BASEPATH.'/application/'.$file_path);
+            require_once(BASEPATH.'/application/'.$file_path);
             //Check view class exists or not
             if(class_exists($class)) {
               //Create view object

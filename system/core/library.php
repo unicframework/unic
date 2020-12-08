@@ -106,7 +106,7 @@ class library {
     foreach($this->libraries as $library) {
       //Check library exists or not
       if(file_exists($library['path'])) {
-        include_once($library['path']);
+        require_once($library['path']);
         if(class_exists($library['class'])) {
           $library_list[$library['object']] = new $library['class']();
         } else {
