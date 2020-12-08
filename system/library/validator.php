@@ -92,7 +92,7 @@ class validator {
                       }
                       $is_valid = false;
                     }
-                  } else if(!isset($_FILES[$key]) && $val == true && $rules['file'] == true || empty($_FILES[$key]) && $_FILES[$key] !== 0 && $val == true && $rules['file'] == true) {
+                  } else if(!isset($_FILES[$key]) && $val == true && $rules['file'] == true || isset($_FILES[$key]) && empty($_FILES[$key]) && $_FILES[$key] !== 0 && $val == true && $rules['file'] == true) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -107,7 +107,7 @@ class validator {
                     $is_valid = false;
                   }
                 } else if($rule == 'numeric') {
-                  if(isset($data[$key]) && !is_numeric($data[$key]) && $val == true) {
+                  if(isset($data[$key]) && !empty($data[$key]) && !is_numeric($data[$key]) && $val == true) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -120,7 +120,7 @@ class validator {
                       $this->errors[$key] = $key.' should be numeric.';
                     }
                     $is_valid = false;
-                  } else if(isset($data[$key]) && is_numeric($data[$key]) && $val == false) {
+                  } else if(isset($data[$key]) && !empty($data[$key]) && is_numeric($data[$key]) && $val == false) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -135,7 +135,7 @@ class validator {
                     $is_valid = false;
                   }
                 } else if($rule == 'string') {
-                  if(isset($data[$key]) && !is_string($data[$key]) && $val == true) {
+                  if(isset($data[$key]) && !empty($data[$key]) && !is_string($data[$key]) && $val == true) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -148,7 +148,7 @@ class validator {
                       $this->errors[$key] = $key.' should be string.';
                     }
                     $is_valid = false;
-                  } else if(isset($data[$key]) && is_string($data[$key]) && $val == false) {
+                  } else if(isset($data[$key]) && !empty($data[$key]) && is_string($data[$key]) && $val == false) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -163,7 +163,7 @@ class validator {
                     $is_valid = false;
                   }
                 } else if($rule == 'integer') {
-                  if(isset($data[$key]) && !is_int($data[$key]) && $val == true) {
+                  if(isset($data[$key]) && !empty($data[$key]) && !is_int($data[$key]) && $val == true) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -176,7 +176,7 @@ class validator {
                       $this->errors[$key] = $key.' should be integer.';
                     }
                     $is_valid = false;
-                  } else if(isset($data[$key]) && is_int($data[$key]) && $val == false) {
+                  } else if(isset($data[$key]) && !empty($data[$key]) && is_int($data[$key]) && $val == false) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -191,7 +191,7 @@ class validator {
                     $is_valid = false;
                   }
                 } else if($rule == 'float') {
-                  if(isset($data[$key]) && !is_float($data[$key]) && $val == true) {
+                  if(isset($data[$key]) && !empty($data[$key]) && !is_float($data[$key]) && $val == true) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -204,7 +204,7 @@ class validator {
                       $this->errors[$key] = $key.' should be float.';
                     }
                     $is_valid = false;
-                  } else if(isset($data[$key]) && is_float($data[$key]) && $val == false) {
+                  } else if(isset($data[$key]) && !empty($data[$key]) && is_float($data[$key]) && $val == false) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -219,7 +219,7 @@ class validator {
                     $is_valid = false;
                   }
                 } else if($rule == 'boolean') {
-                  if(isset($data[$key]) && !is_bool($data[$key]) && $val == true) {
+                  if(isset($data[$key]) && !empty($data[$key]) && !is_bool($data[$key]) && $val == true) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -232,7 +232,7 @@ class validator {
                       $this->errors[$key] = $key.' should be boolean.';
                     }
                     $is_valid = false;
-                  } else if(isset($data[$key]) && is_bool($data[$key]) && $val == false) {
+                  } else if(isset($data[$key]) && !empty($data[$key]) && is_bool($data[$key]) && $val == false) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -247,7 +247,7 @@ class validator {
                     $is_valid = false;
                   }
                 } else if($rule == 'array') {
-                  if(isset($data[$key]) && !is_array($data[$key]) && $val == true) {
+                  if(isset($data[$key]) && !empty($data[$key]) && !is_array($data[$key]) && $val == true) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -260,7 +260,7 @@ class validator {
                       $this->errors[$key] = $key.' should be array.';
                     }
                     $is_valid = false;
-                  } else if(isset($data[$key]) && is_array($data[$key]) && $val == false) {
+                  } else if(isset($data[$key]) && !empty($data[$key]) && is_array($data[$key]) && $val == false) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -275,7 +275,7 @@ class validator {
                     $is_valid = false;
                   }
                 } else if($rule == 'object') {
-                  if(isset($data[$key]) && !is_object($data[$key]) && $val == true) {
+                  if(isset($data[$key]) && !empty($data[$key]) && !is_object($data[$key]) && $val == true) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -288,7 +288,7 @@ class validator {
                       $this->errors[$key] = $key.' should be object.';
                     }
                     $is_valid = false;
-                  } else if(isset($data[$key]) && is_object($data[$key]) && $val == false) {
+                  } else if(isset($data[$key]) && !empty($data[$key]) && is_object($data[$key]) && $val == false) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -303,7 +303,7 @@ class validator {
                     $is_valid = false;
                   }
                 } else if($rule == 'minlength') {
-                  if(isset($data[$key]) && !is_string($data[$key]) || isset($data[$key]) && !(strlen($data[$key]) >= $val)) {
+                  if(isset($data[$key]) && !is_string($data[$key]) || isset($data[$key]) && !empty($data[$key]) && !(strlen($data[$key]) >= $val)) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -318,7 +318,7 @@ class validator {
                     $is_valid = false;
                   }
                 } else if($rule == 'maxlength') {
-                  if(isset($data[$key]) && !is_string($data[$key]) || isset($data[$key]) && !(strlen($data[$key]) <= $val)) {
+                  if(isset($data[$key]) && !is_string($data[$key]) || isset($data[$key]) && !empty($data[$key]) && !(strlen($data[$key]) <= $val)) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -333,7 +333,7 @@ class validator {
                     $is_valid = false;
                   }
                 } else if($rule == 'email') {
-                  if(isset($data[$key]) && !filter_var($data[$key], FILTER_VALIDATE_EMAIL) && $val == true) {
+                  if(isset($data[$key]) && !empty($data[$key]) && !filter_var($data[$key], FILTER_VALIDATE_EMAIL) && $val == true) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -346,7 +346,7 @@ class validator {
                       $this->errors[$key] = 'Please enter valid email address.';
                     }
                     $is_valid = false;
-                  } else if(isset($data[$key]) && filter_var($data[$key], FILTER_VALIDATE_EMAIL) && $val == false) {
+                  } else if(isset($data[$key]) && !empty($data[$key]) && filter_var($data[$key], FILTER_VALIDATE_EMAIL) && $val == false) {
                     if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                       if(isset($this->messages[$key][$rule])) {
                         $this->errors[$key] = $this->messages[$key][$rule];
@@ -363,7 +363,7 @@ class validator {
                 } else if($rule == 'file') {
                   if(isset($_FILES[$key]['tmp_name']) && is_array($_FILES[$key]['tmp_name'])) {
                     foreach($_FILES[$key]['tmp_name'] as $tmp_name) {
-                      if(isset($tmp_name) && !is_uploaded_file($tmp_name) && $val == true) {
+                      if(isset($tmp_name) && !empty($tmp_name) && !is_uploaded_file($tmp_name) && $val == true) {
                         if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                           if(isset($this->messages[$key][$rule])) {
                             $this->errors[$key] = $this->messages[$key][$rule];
@@ -376,7 +376,7 @@ class validator {
                           $this->errors[$key] = 'Please upload file';
                         }
                         $is_valid = false;
-                      } else if(isset($tmp_name) && is_uploaded_file($tmp_name) && $val == false) {
+                      } else if(isset($tmp_name) && !empty($tmp_name) && is_uploaded_file($tmp_name) && $val == false) {
                         if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                           if(isset($this->messages[$key][$rule])) {
                             $this->errors[$key] = $this->messages[$key][$rule];
@@ -392,7 +392,7 @@ class validator {
                       }
                     }
                   } else {
-                    if(!isset($_FILES[$key]['tmp_name']) && $val == true || isset($_FILES[$key]['tmp_name']) && !is_uploaded_file($_FILES[$key]['tmp_name']) && $val == true) {
+                    if(isset($_FILES[$key]['tmp_name']) && !empty($_FILES[$key]['tmp_name']) && !is_uploaded_file($_FILES[$key]['tmp_name']) && $val == true) {
                       if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                         if(isset($this->messages[$key][$rule])) {
                           $this->errors[$key] = $this->messages[$key][$rule];
@@ -405,7 +405,7 @@ class validator {
                         $this->errors[$key] = 'Please upload file';
                       }
                       $is_valid = false;
-                    } else if(isset($_FILES[$key]['tmp_name']) && is_uploaded_file($_FILES[$key]['tmp_name']) && $val == false) {
+                    } else if(isset($_FILES[$key]['tmp_name']) && !empty($_FILES[$key]['tmp_name']) && is_uploaded_file($_FILES[$key]['tmp_name']) && $val == false) {
                       if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                         if(isset($this->messages[$key][$rule])) {
                           $this->errors[$key] = $this->messages[$key][$rule];
@@ -457,7 +457,7 @@ class validator {
                 } else if($rule == 'file_extension') {
                   if(isset($_FILES[$key]['name']) && is_array($_FILES[$key]['name'])) {
                     foreach($_FILES[$key]['name'] as $name) {
-                      if(isset($name) && !(is_array($val) ? in_array(strtolower(pathinfo($name, PATHINFO_EXTENSION)), $val) : is_string($val) && strtolower(pathinfo($name, PATHINFO_EXTENSION)) == strtolower($val))) {
+                      if(isset($name) && !empty($name) && !(is_array($val) ? in_array(strtolower(pathinfo($name, PATHINFO_EXTENSION)), $val) : is_string($val) && strtolower(pathinfo($name, PATHINFO_EXTENSION)) == strtolower($val))) {
                         if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                           if(isset($this->messages[$key][$rule])) {
                             $this->errors[$key] = $this->messages[$key][$rule];
@@ -473,7 +473,7 @@ class validator {
                       }
                     }
                   } else {
-                    if(isset($_FILES[$key]['name']) && !(is_array($val) ? in_array(strtolower(pathinfo($_FILES[$key]['name'], PATHINFO_EXTENSION)), $val) : is_string($val) && strtolower(pathinfo($_FILES[$key]['name'], PATHINFO_EXTENSION)) == strtolower($val))) {
+                    if(isset($_FILES[$key]['name']) && !empty($_FILES[$key]['name']) && !(is_array($val) ? in_array(strtolower(pathinfo($_FILES[$key]['name'], PATHINFO_EXTENSION)), $val) : is_string($val) && strtolower(pathinfo($_FILES[$key]['name'], PATHINFO_EXTENSION)) == strtolower($val))) {
                       if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                         if(isset($this->messages[$key][$rule])) {
                           $this->errors[$key] = $this->messages[$key][$rule];
@@ -491,7 +491,7 @@ class validator {
                 } else if($rule == 'min_file_size') {
                   if(isset($_FILES[$key]['size']) && is_array($_FILES[$key]['size'])) {
                     foreach($_FILES[$key]['size'] as $size) {
-                      if(isset($size) && !($size >= $val)) {
+                      if(isset($size) && !empty($size) && !($size >= $val)) {
                         if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                           if(isset($this->messages[$key][$rule])) {
                             $this->errors[$key] = $this->messages[$key][$rule];
@@ -507,7 +507,7 @@ class validator {
                       }
                     }
                   } else {
-                    if(isset($_FILES[$key]['size']) && !($_FILES[$key]['size'] >= $val)) {
+                    if(isset($_FILES[$key]['size']) && !empty($_FILES[$key]['size']) && !($_FILES[$key]['size'] >= $val)) {
                       if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                         if(isset($this->messages[$key][$rule])) {
                           $this->errors[$key] = $this->messages[$key][$rule];
@@ -525,7 +525,7 @@ class validator {
                 } else if($rule == 'max_file_size') {
                   if(isset($_FILES[$key]['size']) && is_array($_FILES[$key]['size'])) {
                     foreach($_FILES[$key]['size'] as $size) {
-                      if(isset($size) && !($size <= $val)) {
+                      if(isset($size) && !empty($size) && !($size <= $val)) {
                         if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                           if(isset($this->messages[$key][$rule])) {
                             $this->errors[$key] = $this->messages[$key][$rule];
@@ -541,7 +541,7 @@ class validator {
                       }
                     }
                   } else {
-                    if(isset($_FILES[$key]['size']) && !($_FILES[$key]['size'] <= $val)) {
+                    if(isset($_FILES[$key]['size']) && !empty($_FILES[$key]['size']) && !($_FILES[$key]['size'] <= $val)) {
                       if(isset($this->messages[$key]) && is_array($this->messages[$key])) {
                         if(isset($this->messages[$key][$rule])) {
                           $this->errors[$key] = $this->messages[$key][$rule];
@@ -600,6 +600,7 @@ class validator {
   *
   * @param string $error
   * @return string|array|void
+  */
   function errors(string $error=NULL) {
     if(isset($error) && is_array($this->errors) && isset($this->errors[$error])) {
       return $this->errors[$error];
