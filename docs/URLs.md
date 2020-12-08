@@ -8,8 +8,8 @@
 
 ```php
 //Include views
-include_once 'view.php';
-include_once 'product_view.php';
+require_once 'view.php';
+require_once 'product_view.php';
 
 $urlpatterns = [
   '/' => 'app_view.home',
