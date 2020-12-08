@@ -1,7 +1,5 @@
 ## Libraries
 
-#### What is Library
-
   Libraries are classes that can be used in web application.
 
 #### Create Libraries
@@ -65,7 +63,7 @@ class view extends Views {
   libraries can not be used in models.
 
 
-## System Libraries
+### System Libraries
 
   Unic framework provide lots of pre-defined system libraries.
 
@@ -73,6 +71,7 @@ class view extends Views {
 
   - [Security Library](Libraries/Security.md)
   - [User Agent Library](Libraries/User-Agent.md)
+  - [Validator](Libraries/Validator.md)
 
   **Install system library**
 
@@ -82,6 +81,7 @@ $libraries = [
   'system.security',
   //add alias name
   'system.user_agent' => 'user',
+  'system.validator'
 ];
 ```
 
