@@ -45,6 +45,20 @@
   - `post` : get all POST request data.
   - `put` : get all PUT request data.
   - `delete` : get all DELETE request data.
+  - `patch` : get all PATCH request data.
+  - `head` : get all HEAD request data.
+  - `options` : get all OPTIONS request data.
+  - `connect` : get all CONNECT request data.
+  - `trace` : get all TRACE request data.
+  - `copy` : get all COPY request data.
+  - `link` : get all LINK request data.
+  - `unlink` : get all UNLINK request data.
+  - `lock` : get all LOCK request data.
+  - `unlock` : get all UNLOCK request data.
+  - `purge` : get all PURGE request data.
+  - `propfind` : get all PROPFIND request data.
+  - `view` : get all VIEW request data.
+  - `any` : get all request data.
   - `files` : get all FILES request data.
 
   ### Request Information
@@ -87,15 +101,15 @@ class view extends Views {
   }
 
   function home() {
-    //check request method is post or not
+    //Check request method is post or not
     if($this->request->is_post) {
-      //do something
+      //Do something
     }
 
-    //get post method data
+    //Get post method data
     echo $this->request->post->name;
     echo $this->request->post->email;
-    $this->render('home');
+    return $this->render('home');
   }
 }
 ```
