@@ -12,7 +12,7 @@
 */
 
 //Include unic framework
-include_once('./system/unic.php');
+require_once __DIR__.'/system/unic.php';
 
 //Initialize web app
 $app = new unic();
