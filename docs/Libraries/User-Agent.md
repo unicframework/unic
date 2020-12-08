@@ -15,8 +15,6 @@
 
 ### Example
 
-  Load user agent library.
-
 ```php
 class view extends Views {
   function __construct() {
