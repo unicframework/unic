@@ -11,7 +11,7 @@
 
 defined('SYSPATH') OR exit('No direct access allowed');
 
-class user_agent{
+class user_agent {
   public $ip;
   public $os;
   public $os_version;
