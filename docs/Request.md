@@ -2,7 +2,7 @@
 
   Resquest handle all the HTTP Request and Server information.
 
-  ### Request Header Information
+### Request Header Information
 
   - `scheme` : Request scheme http or https.
   - `method` : Which request method was used to access the page; e.g. 'GET', 'HEAD', 'POST', 'PUT', 'DELETE'
@@ -18,7 +18,7 @@
   - `user_agent` : This is a string denoting the user agent being which is accessing the page. A typical example is: Mozilla/4.5 [en] (X11; U; Linux 2.2.9 i586).
   - `referrer` : The address of the page (if any) which referred the user agent to the current page. This is set by the user agent. Not all user agents will set this, and some provide the ability to modify HTTP_REFERER as a feature. In short, it cannot really be trusted.
 
-  ### Server Information
+### Server Information
 
   - `hostname` : The Host name from which the user is viewing the current page.
   - `host` : The HTTP Host header sent by the client.
@@ -31,7 +31,7 @@
   - `server_signature` : String containing the server version and virtual host name which are added to server-generated pages, if enabled.
   - `document_root` : The document root directory under which the current script is executing, as defined in the server's configuration file.
 
-  ### Path Information
+### Path Information
 
   - `uri` : The URI which was given in order to access this page; for instance, '/index.html'.
   - `request_uri` : The URI which was given in order to access this page; for instance, '/index.html'.
@@ -39,7 +39,7 @@
   - `path` : path of current request.
   - `path_info` : path of current request with query string.
 
-  ### Request Data
+### Request Data
 
   - `get` : get all GET request data.
   - `post` : get all POST request data.
@@ -61,7 +61,7 @@
   - `any` : get all request data.
   - `files` : get all FILES request data.
 
-  ### Request Information
+### Request Information
 
   - `is_secure` : TRUE if the current request is https.
   - `is_ajax` : TRUE if the current request is made by ajax.
@@ -85,12 +85,12 @@
   - `is_http` : TRUE if the current request is http.
   - `is_https` : TRUE if the current request is https.
 
-  ### User Information
+### User Information
 
   - `remote_addr` : The IP address from which the user is viewing the current page.
   - `is_referred` : True if user is redirected from somewhere.
 
-  ### Example
+### Example
 
 ```php
 class view extends Views {
