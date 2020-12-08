@@ -1,6 +1,6 @@
 <?php
 //Include models
-include_once 'model.php';
+require_once 'model.php';
 
 //Create your views here
 class view extends Views {
