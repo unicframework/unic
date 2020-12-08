@@ -92,8 +92,6 @@
 
   ### Example
 
-  Get post request data
-
 ```php
 class view extends Views {
   function __construct() {
