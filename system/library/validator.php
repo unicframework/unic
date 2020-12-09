@@ -6,7 +6,7 @@
 * @package : Validator Library
 * @category : Library
 * @author : Unic Framework
-* @link : https://github.com/unic-framework/unic
+* @link : https://github.com/unicframework/unic
 */
 
 defined('SYSPATH') OR exit('No direct access allowed');
