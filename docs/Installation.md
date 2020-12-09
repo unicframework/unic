@@ -4,7 +4,7 @@
 
 ### Unic can be installed in few steps:
 
-  - [Download](https://github.com/unic-framework/unic/archive/main.zip) the Unic files.
+  - [Download](https://github.com/unicframework/unic/archive/main.zip) the Unic files.
   - Unzip the package.
   - Upload all the Unic folders and files (application, system, .htaccess, index.php) on the server.
 
@@ -23,7 +23,7 @@ public_html
   A quick setup for linux and android devices.
 
 ```sh
-git clone https://github.com/unic-framework/unic
+git clone https://github.com/unicframework/unic
 cd unic
 php -S localhost:8080 index.php
 ```
@@ -35,7 +35,7 @@ php -S localhost:8080 index.php
   - Install `composer` if you have not installed.
 
 ```shell
-composer create-project unic-framework/unic blog
+composer create-project unicframework/unic blog
 ```
 
   It will create a `blog` project for you.
