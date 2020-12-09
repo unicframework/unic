@@ -11,6 +11,11 @@ $this->validator->rules([
     'required' => true,
     'string' => true
   ],
+  'gender' => [
+    'required' => true,
+    'string' => true,
+    'in' => ['male', 'female', 'other']
+  ],
   'email' => [
     'required' => true,
     'email' => true
