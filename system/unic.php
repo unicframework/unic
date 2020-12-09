@@ -8,7 +8,7 @@
 * @author : Rajkumar Dusad
 * @copyright : Unic Framework
 * @license : MIT License
-* @link : https://github.com/unic-framework/unic
+* @link : https://github.com/unicframework/unic
 */
 
 //System path
@@ -32,7 +32,7 @@ if(file_exists(BASEPATH.'/vendor/autoload.php')) {
 * @package : Unic
 * @category : System
 * @author : Unic Framework
-* @link : https://github.com/unic-framework/unic
+* @link : https://github.com/unicframework/unic
 */
 class unic {
   function __construct() {
