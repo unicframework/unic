@@ -1,6 +1,6 @@
 ## Validator
 
-  Validator is a html form-data/user-data validation library.
+  Validator is a html form-data/user-data and json data validation library.
 
 ### Example
 
@@ -43,6 +43,7 @@ if($this->validator->validate($this->request->post)) {
   - **boolean** : validate boolean data type true or false.
   - **array** : validate array true or false.
   - **object** : validate object true or false.
+  - **json** : validate json data type true or false.
   - **minlength** : set minimum length in integer.
   - **maxlength** : set maximum length in integer.
   - **email** : validate email address true or false.
@@ -51,6 +52,8 @@ if($this->validator->validate($this->request->post)) {
   - **file_extension** : set allowed file extension in array.
   - **min_file_size** : set minimum file size in bytes.
   - **max_file_size** : set maximum file size in bytes.
+  - **in** : check data match in given array.
+  - **not_in** : check data not match in given array.
 
 ```php
 //Set validation rules
@@ -58,6 +61,11 @@ $this->validator->rules([
   'name' => [
     'required' => true,
     'string' => true
+  ],
+  'gender' => [
+    'required' => true,
+    'string' => true,
+    'in' => ['male', 'female', 'other']
   ],
   'email' => [
     'required' => true,
@@ -86,6 +94,10 @@ $this->validator->messages([
   'name' => [
     'required' => 'Please enter your name.',
     'string' => 'Your name should be in string.'
+  ],
+  'gender' => [
+    'required' => 'Please enter gender.',
+    'in' => 'Please enter valid gender.'
   ],
   'email' => [
     'required' => 'Please enter email address.',
