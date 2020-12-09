@@ -6,7 +6,7 @@
 * @package : Error Handler
 * @category : System
 * @author : Unic Framework
-* @link : https://github.com/unic-framework/fnic
+* @link : https://github.com/unicframework/fnic
 */
 
 defined('SYSPATH') OR exit('No direct access allowed');
