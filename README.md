@@ -23,7 +23,7 @@ Unic web framework follows the MVT (Model-View-Template) architectural pattern.
 
 ### Unic can be installed in few steps:
 
-  - [Download](https://github.com/unic-framework/unic/archive/main.zip) the Unic files.
+  - [Download](https://github.com/unicframework/unic/archive/main.zip) the Unic files.
   - Unzip the package.
   - Upload all the Unic folders and files (system, application, .htaccess, index.php) on the server.
 
@@ -34,7 +34,7 @@ Unic web framework follows the MVT (Model-View-Template) architectural pattern.
   - Install `composer` if you have not installed.
 
 ```shell
-composer create-project unic-framework/unic blog
+composer create-project unicframework/unic blog
 ```
 
   It will create a `blog` project for you.
@@ -126,7 +126,7 @@ $urlpatterns = [
 ## Documentation
 
   - Learn more about Unic from [Documentation](docs/README.md) file.
-  - Documentation : https://unic-framework.github.io/unic
+  - Documentation : https://unicframework.github.io/unic
 
 
 ## License
