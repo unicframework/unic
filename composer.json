@@ -1,5 +1,5 @@
 {
-    "name": "unic-framework/unic",
+    "name": "unicframework/unic",
     "type": "project",
     "description": "Unic is a high performance, open source web framework.",
     "keywords": [
@@ -9,7 +9,7 @@
         "web framework",
         "mvt framework"
     ],
-    "homepage": "https://unic-framework.github.io/unic",
+    "homepage": "https://unicframework.github.io/unic",
     "license": "MIT",
     "authors": [
         {
