@@ -162,9 +162,9 @@ $urlpatterns = [
 ## Documentation
 
   - Learn more about Unic from [Documentation](README.md) file.
-  - Documentation : https://unic-framework.github.io/unic
+  - Documentation : https://unicframework.github.io/unic
 
 
 ## License
 
-  [MIT License](https://github.com/unic-framework/unic/blob/main/LICENSE)
+  [MIT License](https://github.com/unicframework/unic/blob/main/LICENSE)
