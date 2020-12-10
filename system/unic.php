@@ -42,10 +42,10 @@ class unic {
 
   /**
   * Run web application
-  * Listen request and handle routes.
+  * Listen and handle server requests.
   */
   function run() {
-    //Handle request
-    $this->router->handle_routes();
+    //Handle server request
+    $this->router->handle_request();
   }
 }
