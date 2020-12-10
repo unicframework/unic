@@ -36,12 +36,12 @@ class router {
   }
 
   /**
-  * Handle Routes
+  * Handle Request
   * Handle Http request and render views.
   *
   * @return void
   */
-  public function handle_routes() {
+  public function handle_request() {
     global $request, $session, $cookie, $middlewares, $allowed_hosts;
     $request = new request();
     $session = new session();
