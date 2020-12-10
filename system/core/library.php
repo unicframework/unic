@@ -105,14 +105,14 @@ class library {
     global $library_list;
     foreach($this->libraries as $library) {
       //Check library exists or not
-      if(is_dir($library['path']) && if_file($library['path'].'/'.$library['class'].'.php')) {
+      if(is_dir($library['path']) && is_file($library['path'].'/'.$library['class'].'.php')) {
         require_once($library['path'].'/'.$library['class'].'.php');
         if(class_exists($library['class'])) {
           $library_list[$library['object']] = new $library['class']();
         } else {
           exit("Error : '".$library['class']."' library class not found");
         }
-      } else if(if_file($library['path'].'.php')) {
+      } else if(is_file($library['path'].'.php')) {
         require_once($library['path'].'.php');
         if(class_exists($library['class'])) {
           $library_list[$library['object']] = new $library['class']();
