@@ -54,14 +54,14 @@ class library {
               //Get library alias name
               $object_name = $obj;
               //Get library path
-              $file_path = SYSPATH.'/library/'.trim($library).'.php';
+              $file_path = SYSPATH.'/library/'.trim($library);
             } else {
               //Get library name
               $class_name = basename($lib_path);
               //Get library alias name
               $object_name = $obj;
               //Get library path
-              $file_path = BASEPATH.'/application/'.trim($lib_path, '/').'.php';
+              $file_path = BASEPATH.'/application/'.trim($lib_path, '/');
             }
           } else {
             //Check system libraries
@@ -105,8 +105,15 @@ class library {
     global $library_list;
     foreach($this->libraries as $library) {
       //Check library exists or not
-      if(file_exists($library['path'])) {
-        require_once($library['path']);
+      if(is_dir($library['path']) && if_file($library['path'].'/'.$library['class'].'.php')) {
+        require_once($library['path'].'/'.$library['class'].'.php');
+        if(class_exists($library['class'])) {
+          $library_list[$library['object']] = new $library['class']();
+        } else {
+          exit("Error : '".$library['class']."' library class not found");
+        }
+      } else if(if_file($library['path'].'.php')) {
+        require_once($library['path'].'.php');
         if(class_exists($library['class'])) {
           $library_list[$library['object']] = new $library['class']();
         } else {
