@@ -44,7 +44,7 @@ class library {
     if(is_array($libraries)) {
       if(!empty($libraries)) {
         foreach($libraries as $lib_path => $obj) {
-          //Check if library has object name
+          //Check if library has alias name
           if(!is_int($lib_path)) {
             //Check system libraries
             list($system, $library) = explode('.', $lib_path);
@@ -72,14 +72,14 @@ class library {
               //Get library alias name
               $object_name = $library;
               //Get library path
-              $file_path = SYSPATH.'/library/'.trim($library).'.php';
+              $file_path = SYSPATH.'/library/'.trim($library);
             } else {
               //Get library name
               $class_name = basename($obj);
               //Get library alias name
               $object_name = $class_name;
               //Get library path
-              $file_path = BASEPATH.'/application/'.trim($obj, '/').'.php';
+              $file_path = BASEPATH.'/application/'.trim($obj, '/');
             }
           }
           $library_list[] = [
@@ -120,7 +120,7 @@ class library {
           exit("Error : '".$library['class']."' library class not found");
         }
       } else {
-        exit("Error : '".$library['path']."' library file not found");
+        exit("Error : '".$library['path']."' library not found");
       }
     }
   }
