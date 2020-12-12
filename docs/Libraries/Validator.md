@@ -24,7 +24,7 @@ $this->validator->rules([
     'email' => true,
     'callback' => function() {
       //Convert email to lowercase
-      $_POST['email'] = strtolower($_POST['email']);
+      $this->request->post->email = strtolower($this->request->post->email);
     }
   ],
   'password' => [
@@ -33,13 +33,13 @@ $this->validator->rules([
     'maxlength' => 15,
     'callback' => function() {
       //Encrypt password
-      $_POST['password'] = base64_encode($_POST['password']);
+      $this->request->post->password = base64_encode($this->request->post->password);
     }
   ]
 ]);
 
 //Validate form data
-if($this->validator->validate($_POST)) {
+if($this->validator->validate($this->request->post)) {
   //Ok data is valid
 } else {
   //Display validation errors
@@ -104,7 +104,7 @@ $this->validator->rules([
     'email' => true,
     'callback' => function() {
       //Convert email to lowercase
-      $_POST['email'] = strtolower($_POST['email']);
+      $this->request->post->email = strtolower($this->request->post->email);
     }
   ],
   'password' => [
