@@ -84,9 +84,8 @@ class validator {
       'not_in',
       'equal',
       'not_equal',
-      'is_true',
-      'is_false',
-      'callback'
+      'callback',
+      'rules'
     ];
   }
 
@@ -179,9 +178,10 @@ class validator {
   * @param string $data_key
   * @param array $rules
   * @param string $rule
+  * @param string $custom_rule
   * @return void
   */
-  private function set_error(string $data_key, array $rules, string $rule) {
+  private function set_error(string $data_key, array $rules, string $rule, $custom_rule=NULL) {
     //Default error messages
     $this->default_messages = [
       'required' => $data_key.' is required.',
@@ -253,15 +253,20 @@ class validator {
       'not_in' => $data_key.' invalid data.',
       'equal' => $data_key.' invalid data.',
       'not_equal' => $data_key.' invalid data.',
-      'is_true' => $data_key.' invalid data.',
-      'is_false' => $data_key.' invalid data.',
-      'callback' => 'Callback function not found.'
+      'callback' => 'Callback function not found.',
+      'rules' => $data_key.' invalid data.'
     ];
 
     if(isset($this->messages[$data_key]) && is_array($this->messages[$data_key])) {
+      //Set users custom error messages
       if(isset($this->messages[$data_key][$rule])) {
-        $this->errors[$data_key] = $this->messages[$data_key][$rule];
+        if(isset($this->messages[$data_key][$rule][$custom_rule])) {
+          $this->errors[$data_key] = $this->messages[$data_key][$rule][$custom_rule];
+        } else {
+          $this->errors[$data_key] = $this->messages[$data_key][$rule];
+        }
       } else {
+        //Set default error messages
         if($rules[$rule] === true && is_array($this->default_messages[$rule]) && isset($this->default_messages[$rule]['true'])) {
           $this->errors[$data_key] = $this->default_messages[$rule]['true'];
         } else if($rules[$rule] === false && is_array($this->default_messages[$rule]) && isset($this->default_messages[$rule]['false'])) {
@@ -270,9 +275,11 @@ class validator {
           $this->errors[$data_key] = $this->default_messages[$rule];
         }
       }
+    //Set users custom error messages
     } else if(isset($this->messages[$data_key])) {
       $this->errors[$data_key] = $this->messages[$data_key];
     } else {
+      //Set default error messages
       if($rules[$rule] === true && is_array($this->default_messages[$rule]) && isset($this->default_messages[$rule]['true'])) {
         $this->errors[$data_key] = $this->default_messages[$rule]['true'];
       } else if($rules[$rule] === false && is_array($this->default_messages[$rule]) && isset($this->default_messages[$rule]['false'])) {
@@ -840,40 +847,6 @@ class validator {
   }
 
   /**
-  * Validate is true fields.
-  *
-  * @param array $data
-  * @param string $data_key
-  * @param array $rules
-  * @return boolean
-  */
-  private function validate_is_true(array $data, string $data_key, array $rules) : bool {
-    if(isset($data[$data_key]) && !empty($data[$data_key]) && $rules['is_true'] !== true) {
-      $this->set_error($data_key, $rules, 'is_true');
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  /**
-  * Validate is false fields.
-  *
-  * @param array $data
-  * @param string $data_key
-  * @param array $rules
-  * @return boolean
-  */
-  private function validate_is_false(array $data, string $data_key, array $rules) : bool {
-    if(isset($data[$data_key]) && !empty($data[$data_key]) && $rules['is_false'] !== false) {
-      $this->set_error($data_key, $rules, 'is_false');
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  /**
   *  Call callback function
   *
   * @param array $data
@@ -905,6 +878,29 @@ class validator {
       }
     } else if(is_callable($rules['callback'])) {
       $rules['callback']();
+    }
+    return $is_valid;
+  }
+
+  /**
+  * Validate custom fields.
+  *
+  * @param array $data
+  * @param string $data_key
+  * @param array $rules
+  * @return boolean
+  */
+  private function validate_rules(array $data, string $data_key, array $rules) : bool {
+    $is_valid = true;
+    if(isset($data[$data_key]) && !empty($data[$data_key])) {
+      if(is_array($rules['rules'])) {
+        foreach($rules['rules'] as $custom_rule => $value) {
+          if($value !== true) {
+            $this->set_error($data_key, $rules, 'rules', $custom_rule);
+            $is_valid = false;
+          }
+        }
+      }
     }
     return $is_valid;
   }
