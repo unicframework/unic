@@ -1,7 +1,7 @@
 # Unic Framework
 
 <p align="center">
-  <img src="docs/unic-logo.jpg" width="400px" alt="Unic Logo">
+  <img src="https://github.com/unicframework/docs/blob/main/unic-logo.jpg" width="400px" alt="Unic Logo">
 </p>
 
 Unic is a high performance, open source web application framework.
