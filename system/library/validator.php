@@ -47,13 +47,6 @@ class validator {
   */
   private $predefined_rules;
 
-  /**
-  * Check all data is valid or not
-  *
-  * @var boolean
-  */
-  protected $is_valid;
-
   function __construct() {
     //Predefined data validation rules
     $this->predefined_rules = [
@@ -97,7 +90,7 @@ class validator {
   * @return boolean
   */
   public function validate($data) : bool {
-    $this->is_valid = true;
+    $is_valid = true;
 
     //Convert users data type to array
     if(is_object($data)) {
@@ -118,7 +111,8 @@ class validator {
           if(in_array($rule, $this->predefined_rules)) {
             $func = "validate_".$rule;
             if($this->$func($data, $key, $rules) === false) {
-              $this->is_valid = false;
+              $is_valid = false;
+              break;
             }
           } else {
             $this->errors['error'] = 'Invalid rules for validation';
@@ -130,7 +124,7 @@ class validator {
         return false;
       }
     }
-    return $this->is_valid;
+    return $is_valid;
   }
 
   /**
