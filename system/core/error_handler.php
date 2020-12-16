@@ -89,15 +89,15 @@ function parse_errorhandler() {
   if(!is_array($errorhandlers)) {
     $errorhandlers = array();
   }
-  //users error handler array
+  //Users error handler array
   $user_error_handler = array();
-  //parse errorhandler array
+  //Parse errorhandler array
   foreach($errorhandlers as $error => $handler) {
-    //ignore trailing slashes
+    //Ignore trailing slashes
     $error = trim($error, '/');
-    //check handler is array or not
+    //Check handler is array or not
     if(!is_array($handler)) {
-      //get views class name and method name
+      //Get views class name and method name
       list($class, $method) = explode('.', $handler);
       $user_error_handler[$error]['error'] = $error;
       $user_error_handler[$error]['class'] = $class;
