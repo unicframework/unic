@@ -43,22 +43,27 @@ class router {
   */
   public function handle_request() {
     global $request, $session, $cookie, $middlewares, $allowed_hosts;
+
     $request = new request();
     $session = new session();
     $cookie = new cookie();
+
     //Load libraries
     $this->library->load_library();
+
     //Run global middlewares
-    if(!isset($middlewares) || !is_array($middlewares)) {
+    if(!isset($middlewares)) {
       $middlewares = array();
     }
     $this->run_middleware($middlewares);
+
     //Parse allowed hosts
     if(isset($allowed_hosts)) {
       $allowed_hosts = is_array($allowed_hosts) ? $allowed_hosts : array($allowed_hosts);
     } else {
       $allowed_hosts = array();
     }
+
     //Verify allowed hosts
     if(empty($allowed_hosts) || in_array($request->hostname, $allowed_hosts)) {
       //Match url routes
@@ -73,18 +78,20 @@ class router {
           $request->params = json_decode(json_encode($route['params']));
           //Check route middleware
           if(is_array($route['view'])) {
-            //Run middleware
+            //Run route/group middleware
             $this->run_middleware($route['view']['middleware']);
+            //Run view
             $this->run_view($route['view']['view']);
           } else {
+            //Run view
             $this->run_view($route['view']);
           }
         }
       } else {
-        trigger_error("404", E_USER_ERROR);
+        trigger_error('404', E_USER_ERROR);
       }
     } else {
-      trigger_error("403", E_USER_ERROR);
+      trigger_error('403', E_USER_ERROR);
     }
   }
 
