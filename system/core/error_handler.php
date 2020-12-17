@@ -211,7 +211,7 @@ function default_error_handler($response_code) {
     511 => 'Network Authentication Required',
   );
   //System ErrorHandler
-  if(in_array(array_key_exists($response_code, $status_codes))) {
+  if(array_key_exists($response_code, $status_codes)) {
     //Set http response code
     http_response_code($response_code);
     exit($response_code.' '.$status_codes[$response_code]);
