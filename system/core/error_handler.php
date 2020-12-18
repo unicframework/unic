@@ -55,7 +55,8 @@ function error_handler($errno, $errstr, $errfile, $errline) {
       //Call php default error handler
       return false;
     } else {
-      if(in_array($errno, array(E_ERROR, E_WARNING, E_PARSE))) {
+      //Call user's custom errorhandlers
+      if(in_array($errno, array(E_ERROR, E_WARNING, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR, E_RECOVERABLE_ERROR, E_CORE_WARNING, E_COMPILE_WARNING))) {
         load_error_handler($user_error_handler, 500);
       }
       return true;
@@ -97,7 +98,7 @@ function parse_errorhandler() {
     $error = trim($error, '/');
     //Check handler is array or not
     if(!is_array($handler)) {
-      //Get views class name and method name
+      //Get error handler views class name and method name
       list($class, $method) = explode('.', $handler);
       $user_error_handler[$error]['error'] = $error;
       $user_error_handler[$error]['class'] = $class;
@@ -122,12 +123,18 @@ function load_error_handler($errorhandler, $response_code) {
   if(array_key_exists($response_code, $errorhandler)) {
     $class = $errorhandler[$response_code]['class'];
     $method = $errorhandler[$response_code]['method'];
+
     //Set http response code
-    http_response_code($response_code);
-    //Check view class exists or not
+    if(is_int($response_code)) {
+      http_response_code($response_code);
+    } else {
+      http_response_code(200);
+    }
+
+    //Check error handler view class exists or not
     if(class_exists($class)) {
       try {
-        //Create view object
+        //Create error handler view object
         $obj = new $class;
         //Check in views class method exists or not
         if(method_exists($obj, $method)) {
@@ -138,12 +145,14 @@ function load_error_handler($errorhandler, $response_code) {
           exit("Error : '$method' : error handler function does not exists");
         }
       } catch (Exception $e) {
+        //Call system default error handler
         return default_error_handler($response_code);
       }
     } else {
       exit("Error : '$class' : error handler class does not exists");
     }
   } else {
+    //Call system default error handler
     return default_error_handler($response_code);
   }
 }
@@ -157,7 +166,7 @@ function load_error_handler($errorhandler, $response_code) {
 * @return boolean|void
 */
 function default_error_handler($response_code) {
-  //Default status codes
+  //Default http response codes
   $status_codes = array(
     100 => 'Continue',
     101 => 'Switching Protocols',
