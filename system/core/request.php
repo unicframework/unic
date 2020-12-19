@@ -47,7 +47,6 @@ class request {
 
   //Path information
   public $uri;
-  public $request_uri;
   public $url;
   public $path;
   public $path_info;
@@ -103,43 +102,43 @@ class request {
     * Request Header Information
     * Get Request header information.
     */
-    //get scheme of request (https or http)
+    //Get scheme of request (https or http)
     $this->scheme = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] === 'on' || $_SERVER['HTTPS'] === 1)) || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') || (isset($_SERVER['HTTP_FRONT_END_HTTPS']) && strtolower($_SERVER['HTTP_FRONT_END_HTTPS'])!== 'off') ? 'https' : 'http';
 
-    //get request method get, post, put, delete
+    //Get request method get, post, put, delete
     $this->method = strtoupper($_SERVER['REQUEST_METHOD']);
 
-    //get Request time
-    $this->time = isset($_SERVER['REQUEST_TIME']) ? $_SERVER['REQUEST_TIME'] : FALSE;
+    //Get Request time
+    $this->time = isset($_SERVER['REQUEST_TIME']) ? $_SERVER['REQUEST_TIME'] : NULL;
 
-    $this->time_float = isset($_SERVER['REQUEST_TIME_FLOAT']) ? $_SERVER['REQUEST_TIME_FLOAT'] : FALSE;
+    $this->time_float = isset($_SERVER['REQUEST_TIME_FLOAT']) ? $_SERVER['REQUEST_TIME_FLOAT'] : NULL;
 
-    //get server protocol
-    $this->protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : FALSE;
+    //Get server protocol
+    $this->protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : NULL;
 
-    //get http_accept
-    $this->accept = isset($_SERVER['HTTP_ACCEPT']) ? $_SERVER['HTTP_ACCEPT'] : FALSE;
+    //Get http_accept
+    $this->accept = isset($_SERVER['HTTP_ACCEPT']) ? $_SERVER['HTTP_ACCEPT'] : NULL;
 
-    //get accept language
-    $this->language = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : FALSE;
+    //Get accept language
+    $this->language = isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : NULL;
 
-    //get connection
-    $this->connection = isset($_SERVER['HTTP_CONNECTION']) ? $_SERVER['HTTP_CONNECTION'] : FALSE;
+    //Get connection
+    $this->connection = isset($_SERVER['HTTP_CONNECTION']) ? $_SERVER['HTTP_CONNECTION'] : NULL;
 
-    //get http encoding
-    $this->encoding = isset($_SERVER['HTTP_ACCEPT_ENCODING']) ? $_SERVER['HTTP_ACCEPT_ENCODING'] : FALSE;
+    //Get http encoding
+    $this->encoding = isset($_SERVER['HTTP_ACCEPT_ENCODING']) ? $_SERVER['HTTP_ACCEPT_ENCODING'] : NULL;
 
-    //get content type, request MIME type from header
-    $this->content_type = isset($_SERVER['CONTENT_TYPE']) ? $_SERVER['CONTENT_TYPE'] : (isset($_SERVER['HTTP_CONTENT_TYPE']) ? $_SERVER['HTTP_CONTENT_TYPE'] : FALSE);
+    //Get content type, request MIME type from header
+    $this->content_type = isset($_SERVER['CONTENT_TYPE']) ? $_SERVER['CONTENT_TYPE'] : (isset($_SERVER['HTTP_CONTENT_TYPE']) ? $_SERVER['HTTP_CONTENT_TYPE'] : NULL);
 
-    //get content length
-    $this->content_length = isset($_SERVER['CONTENT_LENGTH']) ? $_SERVER['CONTENT_LENGTH'] : (isset($_SERVER['HTTP_CONTENT_LENGTH']) ? $_SERVER['HTTP_CONTENT_LENGTH'] : FALSE);
+    //Get content length
+    $this->content_length = isset($_SERVER['CONTENT_LENGTH']) ? $_SERVER['CONTENT_LENGTH'] : (isset($_SERVER['HTTP_CONTENT_LENGTH']) ? $_SERVER['HTTP_CONTENT_LENGTH'] : NULL);
 
-    //get user agent
-    $this->user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : FALSE;
+    //Get user agent
+    $this->user_agent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : NULL;
 
-    //get http referer
-    $this->referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : FALSE;
+    //Get http referer
+    $this->referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : NULL;
 
 
     /**
@@ -153,62 +152,56 @@ class request {
     * Server Information
     * Get web server information.
     */
-    //get hostname
-    $this->hostname = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : FALSE;
+    //Get hostname
+    $this->hostname = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : NULL;
 
-    //get host
-    $this->host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : FALSE;
+    //Get host
+    $this->host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : NULL;
 
-    //get port
-    $this->port = isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : FALSE;
+    //Get port
+    $this->port = isset($_SERVER['SERVER_PORT']) ? $_SERVER['SERVER_PORT'] : NULL;
 
-    //get server gateway interface
-    $this->gateway_interface = isset($_SERVER['GATEWAY_INTERFACE']) ? $_SERVER['GATEWAY_INTERFACE'] : FALSE;
+    //Get server gateway interface
+    $this->gateway_interface = isset($_SERVER['GATEWAY_INTERFACE']) ? $_SERVER['GATEWAY_INTERFACE'] : NULL;
 
-    //get server addr
-    $this->server_addr = isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : FALSE;
+    //Get server addr
+    $this->server_addr = isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : NULL;
 
-    //get server name
-    $this->server_name = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : FALSE;
+    //Get server name
+    $this->server_name = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : NULL;
 
-    //get server software
-    $this->server_software = isset($_SERVER['SERVER_SOFTWARE']) ? $_SERVER['SERVER_SOFTWARE'] : FALSE;
+    //Get server software
+    $this->server_software = isset($_SERVER['SERVER_SOFTWARE']) ? $_SERVER['SERVER_SOFTWARE'] : NULL;
 
-    //get server protocol
-    $this->server_protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : FALSE;
+    //Get server protocol
+    $this->server_protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : NULL;
 
-    //get server signature
-    $this->server_signature = isset($_SERVER['SERVER_SIGNATURE']) ? $_SERVER['SERVER_SIGNATURE'] : FALSE;
+    //Get server signature
+    $this->server_signature = isset($_SERVER['SERVER_SIGNATURE']) ? $_SERVER['SERVER_SIGNATURE'] : NULL;
 
-    //get server document root
-    $this->document_root = isset($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] : FALSE;
+    //Get server document root
+    $this->document_root = isset($_SERVER['DOCUMENT_ROOT']) ? $_SERVER['DOCUMENT_ROOT'] : NULL;
 
 
     /**
     * Path Information
     * Get all urls and path information.
     */
-    //get request URI
+    //Get request URI
     $this->uri = $_SERVER['REQUEST_URI'];
 
-    //get request URI
-    $this->request_uri = $_SERVER['REQUEST_URI'];
-
-    //get site full url
+    //Get site full url
     $this->url = $this->scheme.'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
-    //get request path without query string.
+    //Get request path without query string.
     $this->path = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-
-    //get request path including query string.
-    $this->path_info = $_SERVER['REQUEST_URI'];
 
 
     /**
     * Request Information
     * Get all Http request information.
     */
-    //get all request data
+    //Get all request data
     parse_str(file_get_contents('php://input'), $request_data);
     $request_data = (object) $request_data;
     $this->get = (object) $_GET;
@@ -230,70 +223,70 @@ class request {
     $this->view = ($this->method === 'VIEW' && isset($request_data)) ? $request_data : NULL;
     $this->any = isset($request_data) ? $request_data : NULL;
 
-    //check connection is secure
+    //Check connection is secure
     $this->is_secure = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] === 'on' || $_SERVER['HTTPS'] === 1)) || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') || (isset($_SERVER['HTTP_FRONT_END_HTTPS']) && strtolower($_SERVER['HTTP_FRONT_END_HTTPS'])!== 'off') ? TRUE : FALSE;
 
-    //check request made with ajax
+    //Check request made with ajax
     $this->is_ajax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest' ? TRUE : FALSE;
 
-    //check request method is get or not
+    //Check request method is get or not
     $this->is_get = $this->method === 'GET' ? TRUE : FALSE;
 
-    //check request method is post or not
+    //Check request method is post or not
     $this->is_post = $this->method === 'POST' ? TRUE : FALSE;
 
-    //check request method is put or not
+    //Check request method is put or not
     $this->is_put = $this->method === 'PUT' ? TRUE : FALSE;
 
-    //check request method is delete or not
+    //Check request method is delete or not
     $this->is_delete = $this->method === 'DELETE' ? TRUE : FALSE;
 
-    //check request method is patch or not
+    //Check request method is patch or not
     $this->is_patch = $this->method === 'PATCH' ? TRUE : FALSE;
 
-    //check request method is head or not
+    //Check request method is head or not
     $this->is_head = $this->method === 'HEAD' ? TRUE : FALSE;
 
-    //check request method is options or not
+    //Check request method is options or not
     $this->is_options = $this->method === 'OPTIONS' ? TRUE : FALSE;
 
-    //check request method is connect or not
+    //Check request method is connect or not
     $this->is_connect = $this->method === 'CONNECT' ? TRUE : FALSE;
 
-    //check request method is trace or not
+    //Check request method is trace or not
     $this->is_trace = $this->method === 'TRACE' ? TRUE : FALSE;
 
-    //check request method is copy or not
+    //Check request method is copy or not
     $this->is_copy = $this->method === 'COPY' ? TRUE : FALSE;
 
-    //check request method is link or not
+    //Check request method is link or not
     $this->is_link = $this->method === 'LINK' ? TRUE : FALSE;
 
-    //check request method is unlink or not
+    //Check request method is unlink or not
     $this->is_unlink = $this->method === 'UNLINK' ? TRUE : FALSE;
 
-    //check request method is lock or not
+    //Check request method is lock or not
     $this->is_lock = $this->method === 'LOCK' ? TRUE : FALSE;
 
-    //check request method is unlock or not
+    //Check request method is unlock or not
     $this->is_unlock = $this->method === 'UNLOCK' ? TRUE : FALSE;
 
-    //check request method is purge or not
+    //Check request method is purge or not
     $this->is_purge = $this->method === 'PURGE' ? TRUE : FALSE;
 
-    //check request method is propfind or not
+    //Check request method is propfind or not
     $this->is_propfind = $this->method === 'PROPFIND' ? TRUE : FALSE;
 
-    //check request method is view or not
+    //Check request method is view or not
     $this->is_view = $this->method === 'VIEW' ? TRUE : FALSE;
 
-    //check protocol https or not
+    //Check protocol https or not
     $this->is_http = $this->scheme === 'http' ? TRUE : FALSE;
 
-    //check protocol is http or not
+    //Check protocol is http or not
     $this->is_https = $this->scheme === 'https' ? TRUE : FALSE;
 
-    //get files data
+    //Get files data
     $this->files = new file_handler();
 
 
@@ -301,10 +294,10 @@ class request {
     * User Information
     * Get User web browser information.
     */
-    //get remote ip address
-    $this->remote_addr = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : FALSE;
+    //Get remote ip address
+    $this->remote_addr = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : NULL;
 
-    //check request is redirected or not
+    //Check request is redirected or not
     $this->is_referred = isset($_SERVER['HTTP_REFERER']) ? TRUE : FALSE;
 
   }
