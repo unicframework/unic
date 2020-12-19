@@ -43,11 +43,11 @@ class user_agent {
   * @return string
   */
   function get_ip() {
-    if (isset($_SERVER['HTTP_X_REAL_IP'])){
+    if(isset($_SERVER['HTTP_X_REAL_IP'])) {
       $ip = $_SERVER['HTTP_X_REAL_IP'];
-    } else if (isset($_SERVER['HTTP_CLIENT_IP'])){
+    } else if(isset($_SERVER['HTTP_CLIENT_IP'])) {
       $ip = $_SERVER['HTTP_CLIENT_IP'];
-    } else if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])){
+    } else if(isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
       $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
     } else if(isset($_SERVER['HTTP_X_FORWARDED'])) {
       $ip = $_SERVER['HTTP_X_FORWARDED'];
