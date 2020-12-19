@@ -38,8 +38,9 @@ class user_agent {
   }
 
   /**
-  * Get IP
-  * retrieve user ip address.
+  * Retrieve user ip address.
+  *
+  * @return string
   */
   function get_ip() {
     if (isset($_SERVER['HTTP_X_REAL_IP'])){
@@ -62,8 +63,13 @@ class user_agent {
     return $ip;
   }
 
-  //parse os from user_agent
-  function get_os(){
+  /**
+  * Parse os from user_agent
+  *
+  * @return string
+  */
+  function get_os() {
+    //List of all OS
     $data = array(
       '/android/i' => 'Android',
       '/windows|win32/i' => 'Windows',
@@ -75,18 +81,23 @@ class user_agent {
       '/linux/i' => 'Linux',
       '/unix/i' => 'Unix',
     );
-    //Match pattern from User Agent
-    foreach($data as $pattern => $os){
-      if(preg_match($pattern, $this->agent)){
+    //Match os from user agent
+    foreach($data as $pattern => $os) {
+      if(preg_match($pattern, $this->agent)) {
         return $os;
       }
     }
     return 'UNKNOWN';
   }
 
-  //parse os version from user_agent
+  /**
+  * Parse os version from user_agent
+  *
+  * @return string
+  */
   function get_os_version() {
-    if ($this->os == 'Android') {
+    if($this->os == 'Android') {
+      //List of all android version
       $data = array(
         '/android 10/i' => '10 Q',
         '/android 9.0/i' => '9.0 Pie',
@@ -118,13 +129,15 @@ class user_agent {
         '/android 2.2.3/i' => '2.2.3 Froyo',
         '/android 2.2/i' => '2.2 Froyo',
       );
-      foreach($data as $pattern => $version){
-        if(preg_match($pattern, $this->agent)){
+      //Match android version
+      foreach($data as $pattern => $version) {
+        if(preg_match($pattern, $this->agent)) {
           return $version;
         }
       }
       return 'UNKNOWN';
-    } else if ($this->os == 'iOS') {
+    } else if($this->os == 'iOS') {
+      //List of all iOS version
       $data = array(
         '/OS 13/i' => 'iOS 13',
         '/OS 12_0/i' => 'iOS 12',
@@ -195,13 +208,15 @@ class user_agent {
         '/iPhone/i' => 'iOS',
         '/iPad/i' => 'iOS',
       );
-      foreach($data as $pattern => $version){
-        if(preg_match($pattern, $this->agent)){
+      //Match iOS version
+      foreach($data as $pattern => $version) {
+        if(preg_match($pattern, $this->agent)) {
           return $version;
         }
       }
       return 'UNKNOWN';
     } else if($this->os == 'Windows') {
+      //List of all windows version
       $data= array(
         '/windows nt 10.0/i' => 'Windows 10',
         '/windows nt 6.2/i' => 'Windows 8',
@@ -216,13 +231,15 @@ class user_agent {
         '/win95/i' => 'Windows 95',
         '/win16/i' => 'Windows 3.11',
       );
-      foreach($data as $pattern => $version){
-        if(preg_match($pattern, $this->agent)){
+      //Match windows version
+      foreach($data as $pattern => $version) {
+        if(preg_match($pattern, $this->agent)) {
           return $version;
         }
       }
       return 'UNKNOWN';
     } else {
+      //Other os version
       $data = array(
         '/macintosh|mac os x/i' => 'Mac OS X',
         '/mac_powerpc/i' => 'Mac OS 9',
@@ -230,8 +247,8 @@ class user_agent {
         '/linux i386/i' => 'Linux 32-Bit',
         '/linux i686/i' => 'Linux 32-Bit'
       );
-      foreach($data as $pattern => $version){
-        if(preg_match($pattern, $this->agent)){
+      foreach($data as $pattern => $version) {
+        if(preg_match($pattern, $this->agent)) {
           return $version;
         }
       }
@@ -239,8 +256,13 @@ class user_agent {
     }
   }
 
-  //parse browser from user_agent
+  /**
+  * Parse browser from user_agent
+  *
+  * @return string
+  */
   function get_browser() {
+    //List of all browsers
     $data = array (
       '/msie/i' => 'Internet Explorer',
       '/edge/i' => 'Edge',
@@ -258,29 +280,33 @@ class user_agent {
       '/safari/i' => 'Safari',
       '/mobile/i' => 'Handheld Browser'
     );
-
-    foreach($data as $pattern => $browser){
-      if(preg_match($pattern, $this->agent)){
+    //Match browser
+    foreach($data as $pattern => $browser) {
+      if(preg_match($pattern, $this->agent)) {
         return $browser;
       }
     }
     return 'UNKNOWN';
   }
 
-  //parse browser version from user_agent
+  /**
+  * Parse browser version from user_agent
+  *
+  * @return string
+  */
   function get_browser_version() {
     $browser = $this->browser;
     $known = array('version', $browser, 'other');
     $pattern = '#(?<browser>'. join('|', $known).')[/ ]+(?<version>[0-9.|a-zA-Z.]*)#';
 
     if (!preg_match_all($pattern, $this->agent, $matches)) {
-      // we have no matching number just continue
+      //We have no matching number just continue
     }
 
-    //see how many we have
+    //Get browser version from matched pattern
     $i = count($matches['browser']);
-    if ($i != 1) {
-      if (strripos($this->agent, 'version') < strripos($this->agent, $browser)){
+    if($i != 1) {
+      if(strripos($this->agent, 'version') < strripos($this->agent, $browser)) {
         $version = $matches['version'][0];
       } else {
         $version = $matches['version'][1];
@@ -289,15 +315,20 @@ class user_agent {
       $version = $matches['version'][0];
     }
 
-    if ($version == null || $version == '') {
+    if($version == null || $version == '') {
       return 'UNKNOWN';
     } else {
       return $version;
     }
   }
 
-  //parse device type from user_agent
+  /**
+  * Parse device type from user_agent
+  *
+  * @return string
+  */
   function get_device_type() {
+    //List of all device types
     $data = array(
       '/iphone/i' => 'iPhone',
       '/ipod/i' => 'iPod',
@@ -308,18 +339,24 @@ class user_agent {
       '/android/i' => 'Phone',
       '/windows|win32/i' => 'Computer',
       '/macintosh|mac os x|mac_powerpc/i' => 'Computer',
-      '/linux/i' => 'Computer',
+      '/linux|unix/i' => 'Computer',
     );
-    foreach($data as $pattern => $type){
-      if(preg_match($pattern, $this->agent)){
+    //Match device type
+    foreach($data as $pattern => $type) {
+      if(preg_match($pattern, $this->agent)) {
         return $type;
       }
     }
     return 'UNKNOWN';
   }
 
-  //parse device brand from user_agent
+  /**
+  * Parse device brand from user_agent
+  *
+  * @return string
+  */
   function get_device_brand() {
+    //List of all device brands
     $data = array(
       '/iPhone|iPad|iPod/i' => 'Apple',
       '/macintosh/i' => 'Apple',
@@ -352,21 +389,21 @@ class user_agent {
       '/Tecno/i' => 'Tecno',
       '/ZTE/i' => 'ZTE',
     );
-    foreach($data as $pattern => $brand){
-      if(preg_match($pattern, $this->agent)){
+    //Match device brand
+    foreach($data as $pattern => $brand) {
+      if(preg_match($pattern, $this->agent)) {
         return $brand;
       }
     }
     return 'UNKNOWN';
   }
 
-  //checking user is referred or not
+  /**
+  * Checking user is referred or not
+  *
+  * @return string|null
+  */
   function get_referrer() {
-    if(isset($_SERVER['HTTP_REFERER'])) {
-      return $_SERVER['HTTP_REFERER'];
-     } else {
-      return false;
-     }
+    return isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : NULL;
   }
-
 }
