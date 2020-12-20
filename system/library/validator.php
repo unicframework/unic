@@ -254,7 +254,7 @@ class validator {
     if(isset($this->messages[$data_key]) && is_array($this->messages[$data_key])) {
       //Set users custom error messages
       if(isset($this->messages[$data_key][$rule])) {
-        if(isset($this->messages[$data_key][$rule][$custom_rule])) {
+        if(is_array($this->messages[$data_key][$rule]) && isset($this->messages[$data_key][$rule][$custom_rule])) {
           $this->errors[$data_key] = $this->messages[$data_key][$rule][$custom_rule];
         } else {
           $this->errors[$data_key] = $this->messages[$data_key][$rule];
