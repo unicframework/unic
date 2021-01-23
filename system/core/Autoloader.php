@@ -73,8 +73,8 @@ if(file_exists(SYSPATH.'/core/Views.php')) {
   exit('Error : system View file not found.');
 }
 
-if(file_exists(SYSPATH.'/core/Middleware.php')) {
-  require_once SYSPATH.'/core/Middleware.php';
+if(file_exists(SYSPATH.'/core/Middlewares.php')) {
+  require_once SYSPATH.'/core/Middlewares.php';
 } else {
   http_response_code(500);
   exit('Error : system middleware file not found.');
