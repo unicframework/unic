@@ -113,6 +113,17 @@ function set_lang(string $lang) {
 }
 
 /**
+* Get Lang
+* Get application local language.
+*
+* @return string|void
+*/
+function get_lang() {
+  global $default_language;
+  return $default_language;
+}
+
+/**
 * Lang
 * Lang is used for localisation.
 *
@@ -125,9 +136,6 @@ function lang(string $lang_var) {
     $default_language = 'en';
   }
 
-  //Parse lang var.
-  list($lang, $var) = explode('.', $lang_var);
-
   //Get application template directory.
   if(isset($templates) && !empty($templates)) {
     if(!is_array($templates)) {
@@ -137,25 +145,41 @@ function lang(string $lang_var) {
     $templates = array();
   }
 
-  //Check lang file exists or not.
-  foreach($templates as $template_dir) {
-    //Get template directory path
-    $template_path = BASEPATH.'/application/'.trim($template_dir, '/');
-    //Get template path.
-    if(file_exists($template_path.'/lang/'.$default_language.'/'.$lang)) {
-      $lang_path = $template_path.'/lang/'.$default_language.'/'.$lang;
-    } else if(file_exists($template_path.'/lang/'.$default_language.'/'.$lang.'.php')) {
-      $lang_path = $template_path.'/lang/'.$default_language.'/'.$lang.'.php';
+  //Parse lang var.
+  if(preg_match("/\./i", $lang_var)) {
+    //Parse lang values form custom lang file
+    list($lang_file, $var) = explode('.', $lang_var);
+    //Check lang file exists or not.
+    foreach($templates as $template_dir) {
+      //Get template directory path
+      $template_path = BASEPATH.'/application/'.trim($template_dir, '/').'/lang/'.$default_language;
+      //Get template path.
+      if(is_dir($template_path) && is_file($template_path.'/'.$lang_file.'.json')) {
+        $lang_path = $template_path.'/'.$lang_file.'.json';
+      }
+    }
+  } else {
+    $lang_file = $default_language;
+    $var = $lang_var;
+    //Check lang file exists or not.
+    foreach($templates as $template_dir) {
+      //Get template directory path
+      $template_path = BASEPATH.'/application/'.trim($template_dir, '/').'/lang/'.$default_language;
+      //Get template path.
+      if(is_file($template_path.'.json')) {
+        $lang_path = $template_path.'.json';
+      }
     }
   }
 
   //Return lang value.
   if(isset($lang_path)) {
-    $values = require($lang_path);
+    $json_data = file_get_contents($lang_path);
+    $values = !empty($json_data) ? json_decode($json_data, true) : array();
     return is_array($values) && isset($values[$var]) ? $values[$var] : NULL;
   } else {
     http_response_code(500);
-    exit("Error : '$lang' lang file not found");
+    exit("Error : '$lang_file' lang file not found");
   }
 }
 
