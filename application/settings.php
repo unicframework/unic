@@ -3,16 +3,11 @@
 $debug = true;
 
 //Allowed hosts
-$allowed_hosts = ['localhost'];
+$allowed_hosts = [];
 
 //Set templates directory
 $templates = [
-  'app/template'
-];
-
-//Libraries
-$libraries = [
-  'system.security',
+  '/template'
 ];
 
 //Global middlewares
@@ -31,13 +26,16 @@ $db['db'] = [
 ];
 
 //Static URL
-$static_url = '/static';
+$static_url = '/';
 
 //Static files DIR
-$static_dir = '/app/static';
+$static_dir = '/static';
 
 //Ignore trailing slashes
 $ignore_trailing_slash = true;
+
+//Set default language
+$default_language = 'en';
 
 //Set default timezone
 date_default_timezone_set('Asia/Kolkata');
