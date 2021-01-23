@@ -1,14 +1,14 @@
 <?php
 /**
-* Middleware
-* Handle middlewares.
+* Middlewares
+* Handle all web application middlewares.
 *
-* @package : Middleware
+* @package : Middlewares
 * @category : System
 * @author : Unic Framework
 * @link : https://github.com/unicframework/unic
 */
 
-class Middlewares extends Response {
+class Middlewares extends HttpResponse {
   //Extends response object
 }
