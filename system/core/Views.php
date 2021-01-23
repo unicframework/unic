@@ -9,6 +9,6 @@
 * @link : https://github.com/unicframework/unic
 */
 
-class Views extends Response {
+class Views extends HttpResponse {
   //Extends response object
 }
