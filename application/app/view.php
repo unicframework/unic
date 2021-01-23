@@ -4,19 +4,19 @@ require_once 'model.php';
 
 //Create your views here
 class view extends Views {
-  function __construct() {
-    parent::__construct();
-  }
-
-  function home() {
+  function home(Request $req) {
     return $this->render('home');
   }
 
-  function page_not_found() {
-    return $this->render('404');
+  function page_not_found(Request $req) {
+    return $this->render('errors/404');
   }
 
-  function internal_server_error() {
-    return $this->render('500');
+  function forbidden(Request $req) {
+    return $this->render('errors/403');
+  }
+
+  function internal_server_error(Request $req) {
+    return $this->render('errors/500');
   }
 }
