@@ -18,7 +18,7 @@ define('SYSPATH', rtrim(__DIR__, '/'));
 define('BASEPATH', rtrim(dirname(__DIR__), '/'));
 
 //Include system autoloader
-require_once SYSPATH.'/core/autoloader.php';
+require_once SYSPATH.'/core/Autoloader.php';
 
 //Include composer autoloader
 if(file_exists(BASEPATH.'/vendor/autoload.php')) {
