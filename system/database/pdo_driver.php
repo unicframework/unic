@@ -9,9 +9,7 @@
 * @link : https://github.com/unicframework/unic
 */
 
-defined('SYSPATH') OR exit('No direct access allowed');
-
-class pdo_db_driver extends pdo{
+class pdo_db_driver extends pdo {
   //DSN
   protected $dsn;
   //User Name
@@ -27,7 +25,7 @@ class pdo_db_driver extends pdo{
   //Charset
   protected $char_set;
 
-  function __construct($db,$name) {
+  function __construct($db, $name) {
     $this->username = $db[$name]['username'];
     $this->password = $db[$name]['password'];
     $this->database = $db[$name]['database'];
@@ -45,6 +43,7 @@ class pdo_db_driver extends pdo{
       //Set the PDO error mode to exception
       $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch(PDOException $error) {
+      http_response_code(500);
       throw new Exception('Database Connection Error : '. $error->getMessage());
     }
   }

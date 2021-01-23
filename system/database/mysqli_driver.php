@@ -9,9 +9,7 @@
 * @link : https://github.com/unicframework/unic
 */
 
-defined('SYSPATH') OR exit('No direct access allowed');
-
-class mysqli_db_driver extends mysqli{
+class mysqli_db_driver extends mysqli {
   //DSN
   protected $dsn;
   //User Name
@@ -27,7 +25,7 @@ class mysqli_db_driver extends mysqli{
   //Charset
   protected $char_set;
 
-  function __construct($db,$name) {
+  function __construct($db, $name) {
     $this->dsn = $db[$name]['dsn'];
     $this->username = $db[$name]['username'];
     $this->password = $db[$name]['password'];
@@ -41,6 +39,7 @@ class mysqli_db_driver extends mysqli{
 
     //Check connection error
     if($this->connect_error) {
+      http_response_code(500);
       throw new Exception('Database Connection Error ('.$this->connect_errno.') '.$this->connect_error);
     } else {
       //Set charset

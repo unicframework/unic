@@ -9,8 +9,6 @@
 * @link : https://github.com/unicframework/unic
 */
 
-defined('SYSPATH') OR exit('No direct access allowed');
-
 class sqlite3_db_driver extends SQLite3 {
   //DSN
   protected $dsn;
@@ -27,7 +25,7 @@ class sqlite3_db_driver extends SQLite3 {
   //Charset
   protected $char_set;
 
-  function __construct($db,$name) {
+  function __construct($db, $name) {
     $this->dsn = $db[$name]['dsn'];
     $this->username = $db[$name]['username'];
     $this->password = $db[$name]['password'];
@@ -39,6 +37,7 @@ class sqlite3_db_driver extends SQLite3 {
     try {
       parent::__construct($this->database);
     } catch (Exception $error) {
+      http_response_code(500);
       throw new Exception('Database Connection Error : '.$error->getMessage());
     }
   }
