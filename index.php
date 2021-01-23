@@ -15,7 +15,7 @@
 require_once __DIR__.'/system/unic.php';
 
 //Initialize web app
-$app = new unic();
+$app = new Unic();
 
 //Run web application
 $app->run();

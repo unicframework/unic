@@ -5,7 +5,7 @@
 </p>
 
 Unic is a high performance, open source web application framework.
-Unic framework follows the MVT (Model-View-Template) architectural pattern.
+Unic web framework follows the MVT (Model-View-Template) architectural pattern.
 
 ## Features
 
@@ -19,15 +19,14 @@ Unic framework follows the MVT (Model-View-Template) architectural pattern.
 
 ## Installation
 
-  Unic framework is for PHP, so it's requires PHP 5.6 or newer. Now you won’t need to setup anything just yet.
+  Unic web framework is for PHP, so it's requires PHP 5.6 or newer. now you won’t need to setup anything just yet.
 
 ### Unic can be installed in few steps:
 
-  - [Download](https://github.com/unicframework/unic/archive/main.zip) the Unic files.
+  - [Download](https://github.com/unicframework/unic/archive/main.zip) the unic framework.
   - Unzip the package.
-  - Upload all the unic files and directories (system, application, .htaccess, index.php) on the server.
 
-  That's it, in the unic framework there is nothing to configure and setup. It's always ready to go.
+  That's it, in the unic web framework there is nothing to configure and setup. it's always ready to go.
 
 ### Install with composer :
 
@@ -42,7 +41,7 @@ composer create-project unicframework/unic blog
 
 ## Simple Example
 
-  A simple `Hello, World` web application in unic framework.
+  A simple `Hello, World` web application in unic web framework.
 
 ### Create View
 
@@ -50,23 +49,18 @@ composer create-project unicframework/unic blog
 
 ```php
 class view extends Views {
-  function __construct() {
-    parent::__construct();
-  }
-
   //Home view
-  function home() {
-    //Send response
+  function home(Request $req) {
     return $this->response('Hello, World !!');
   }
 }
 ```
 
-  `home` view is created, now map this view to URLs.
+  `home` view is created, now map this view to URL.
 
 ### Map URLs to Views
 
-  Let's create URL and map to views. Open `app/urls.php` file and put the following code in it:
+  Let's create URL and map to views. open `app/urls.php` file and put the following code in it:
 
 ```php
 //Include views
@@ -77,12 +71,12 @@ $urlpatterns = [
 ];
 ```
 
-  Now a simple `Hello World` web app is created, it's so simple.
+  Now a simple `Hello World` web app is created.
 
 
-## Simple Web API Example
+## Simple Web Api Example
 
-  A simple `Hello, World` web API in unic framework.
+  A simple `Hello, World` web Api in unic web framework.
 
 ### Create View
 
@@ -90,12 +84,8 @@ $urlpatterns = [
 
 ```php
 class view extends Views {
-  function __construct() {
-    parent::__construct();
-  }
-
   //Home view
-  function home() {
+  function home(Request $req) {
     $data = [
       'status' => true,
       'data' => 'Hello, World',
@@ -106,7 +96,7 @@ class view extends Views {
 }
 ```
 
-  `home` view is created, now map this view to URLs.
+  `home` view is created, now map this view to URL.
 
 ### Map URLs to Views
 
@@ -121,7 +111,7 @@ $urlpatterns = [
 ];
 ```
 
-  Now a simple `Hello, World` web API is created.
+  Now a simple `Hello, World` web api is created.
 
 
 ## Documentation
