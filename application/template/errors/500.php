@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>404 Page Not Found</title>
-  <meta name="title" content="404 Page Not Found">
+  <title>500 Internal Server Error</title>
+  <meta name="title" content="500 Internal Server Error">
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
@@ -38,7 +38,7 @@ body {
 <body>
   <div class="container">
     <div class="text">
-      <h1>404 <span>Page Not Found</span></h1>
+      <h1>500 <span>Internal Server Error</span></h1>
     </div>
   </div>
 </body>
