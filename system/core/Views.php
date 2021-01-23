@@ -1,7 +1,7 @@
 <?php
 /**
-* View
-* View middleware is system default middleware, this middleware handle application views.
+* Views
+* Views middleware is system default middleware, this middleware handle application views.
 *
 * @package : Views
 * @category : System Middleware
