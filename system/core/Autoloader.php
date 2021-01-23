@@ -45,8 +45,8 @@ if(file_exists(SYSPATH.'/core/Request.php')) {
   exit('Error : system request file not found.');
 }
 
-if(file_exists(SYSPATH.'/core/Response.php')) {
-  require_once SYSPATH.'/core/Response.php';
+if(file_exists(SYSPATH.'/core/HttpResponse.php')) {
+  require_once SYSPATH.'/core/HttpResponse.php';
 } else {
   http_response_code(500);
   exit('Error : system response file not found.');
