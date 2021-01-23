@@ -1,15 +1,15 @@
 <?php
 /**
-* Response
+* HTTP Response
 * Response middleware is system default middleware, this middleware handle application response.
 *
-* @package : Response
+* @package : HttpResponse
 * @category : System Middleware
 * @author : Unic Framework
 * @link : https://github.com/unicframework/unic
 */
 
-class Response {
+class HttpResponse {
   /**
   * Store templates array
   *
