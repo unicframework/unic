@@ -114,7 +114,8 @@ class UrlDispatcher {
                   $tmp_parsed_routes = $this->parse_urlpatterns($view['view']);
                   //Add group middlewares to urls
                   foreach($tmp_parsed_routes as $tmp_url => $tmp_view) {
-                    $route = $tmp_url;
+                    $tmp_url = ($tmp_url === '/' ? $tmp_url : '/'.ltrim($tmp_url, '/'));
+                    $route = ($url === '/' ? $tmp_url : rtrim($url, '/').$tmp_url);
                     $tmp_routes[$route]['view'] = (is_array($tmp_view) ? $tmp_view['view'] : $tmp_view);
                     if(isset($tmp_view['middleware'])) {
                       if(is_array($tmp_view['middleware'])) {
@@ -138,7 +139,7 @@ class UrlDispatcher {
                     if(is_array($view['view'])) {
                       exit('Error : invalid urlpatterns format');
                     } else {
-                      $route = ($url === '/' ? $nested_url : $url.$nested_url);
+                      $route = ($url === '/' ? $nested_url : rtrim($url, '/').$nested_url);
                       $tmp_routes[$route] = $view;
                     }
                   } else {
@@ -146,7 +147,7 @@ class UrlDispatcher {
                     exit('Error : invalid urlpatterns format');
                   }
                 } else {
-                  $route = ($url === '/' ? $nested_url : $url.$nested_url);
+                  $route = ($url === '/' ? $nested_url : rtrim($url, '/').$nested_url);
                   $tmp_routes[$route] = $view;
                 }
               }
