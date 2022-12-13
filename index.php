@@ -5,7 +5,7 @@ use Unic\App;
 
 $app = new App();
 
-$app->get('/', function($req, $res, $next) {
+$app->get('/', function($req, $res) {
   $res->send('Hello, World!');
 });
 
