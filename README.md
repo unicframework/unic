@@ -11,7 +11,8 @@ Unic framework is fast, minimal and unopinionated web framework inspired by expr
   - Fast and Powerful.
   - Extremely Light Weight.
   - Minimal and unopinionated.
-  - Fast routing and middlewares.
+  - Simple routing.
+  - Middlewares.
 
 ## Installation
 
@@ -35,7 +36,7 @@ use Unic\App;
 
 $app = new App();
 
-$app->get('/', function($req, $res, $next) {
+$app->get('/', function($req, $res) {
   $res->send("Hello, World!");
 });
 
