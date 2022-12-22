@@ -8,8 +8,11 @@ $app = new App();
 // Set public path
 $app->static('/', base_path('public'));
 
+// Set view path
+$app->set('views', base_path('views'));
+
 $app->get('/', function($req, $res) {
-  $res->send('Hello, World!');
+  $res->render('index.html');
 });
 
 $app->get('/api', function($req, $res) {
