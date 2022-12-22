@@ -5,6 +5,9 @@ use Unic\App;
 
 $app = new App();
 
+// Set public path
+$app->static('/', public_path('public'));
+
 $app->get('/', function($req, $res) {
   $res->send('Hello, World!');
 });
