@@ -20,7 +20,8 @@
     ],
     "require": {
         "php": ">=5.6",
-        "unicframework/framework": "^1.0.0"
+        "unicframework/framework": "~1.0.0",
+        "twig/twig": "~3.4"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
