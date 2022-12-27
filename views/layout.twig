@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{ title }}</title>
-    <link rel='stylesheet' href='/css/style.css' />
-  </head>
-  <body>
-    {% block body %}{% endblock %}
-  </body>
+    <head>
+        <title>{{ title }}</title>
+        <link rel="stylesheet" href="{{ asset('/css/style.css') }}" />
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+    </body>
 </html>
