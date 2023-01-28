@@ -5,18 +5,14 @@ use Unic\App;
 
 $app = new App();
 
-// Set public path
-$app->use($app->static('/', base_path('public')));
+// Set view directory path and view engine
+$app->set('views', __DIR__ . '/views');
+$app->set('view_engine', 'twig');
 
-// Set view path
-$app->set('views', base_path('views'));
+// Set public path and static files directory
+$app->use($app->static('/', __DIR__ . '/public'));
 
-// Set view engine
-$app->set('view_engine', 'twig', [
-    'cache' => base_path('.cache')
-]);
-
-// Handle routes
+// Routes
 $app->get('/', function ($req, $res) {
     $res->render('index.twig', [
         'title' => 'Unic',
@@ -25,7 +21,7 @@ $app->get('/', function ($req, $res) {
 
 $app->get('/api', function ($req, $res) {
     $res->json([
-        'status' => 'Ok',
+        'status' => "ok",
     ]);
 });
 

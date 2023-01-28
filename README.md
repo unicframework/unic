@@ -17,7 +17,7 @@ Unic is flexible and provide lots of HTTP methods to create APIs quickly.
 
 ## Installation
 
-  Unic web framework is for PHP, so it's requires PHP 5.6 or newer. now you won’t need to setup anything just yet.
+  Unic web framework is for PHP, so it's requires PHP 7.4 or newer. now you won’t need to setup anything just yet.
 
   - Install `composer` if you have not installed.
 

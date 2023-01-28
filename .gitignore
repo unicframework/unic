@@ -1,9 +1,9 @@
-/.cache
 /node_modules
 /vendor
+/.idea
+/.vscode
 .env
 .env.backup
 .env.production
 .phpunit.result.cache
-/.idea
-/.vscode
+composer.lock
